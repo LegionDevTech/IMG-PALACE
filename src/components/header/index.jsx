@@ -8,7 +8,7 @@ const Header = () => {
 
 
   return (
-    <div className="flex w-full justify-between items-center p-4 absolute z-10 text-white">
+    <div className="flex w-full justify-between items-center p-2 relative  z-10 text-white">
       <div className="px-2 flex justify-between items-center w-full h-full">
         {/* Menu */}
         <div className="flex items-center">
