@@ -42,12 +42,12 @@ const Header = () => {
           <button className="px-8 py-3 font-semibold">Sign Up</button>
           </Link>
         </div>
-        {/* Hamburger */}
+        {/* Mobile Hamburger */}
         <div onClick={handleClick} className="md:hidden z-10 cursor-pointer">
         {!nav ? <MenuIcon className="w-5 " /> : <XIcon className="w-5" />}
         </div>
       </div>
-      {/* Dropdown */}
+      {/* Mobile Dropdown */}
       <div>
         <ul className={!nav ? "hidden" : "absolute top-0 left-0 h-screen flex flex-col justify-center items-center bg-[#0a192f]/90 w-full px-8"}>
             <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase"><a href='/home'>Home</a></li>

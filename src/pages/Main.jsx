@@ -29,8 +29,8 @@ const Main = () => {
           <div>
             <input className='bg-transparent w-[300px] sm:w-[640px] focus:outline-none p-2' type="text" placeholder='Search Here' />
           </div>
-          <div>
-            <button><AiOutlineSearch size={26} className='icon m-2 hover:fill-green-600 hover:border-slate-600' /></button>
+          <div className='flex'>
+            <button><AiOutlineSearch size={22} className='icon m-2 hover:fill-green-600 hover:border-slate-600' /></button>
           </div>
         </form>
       </div>

@@ -29,19 +29,21 @@ const Videos = () => {
   return (
     <div className="max-w-none mx-auto py-16 px-4">
       <div className=" bg-gradient-to-r from-[#ebebfc] pl-4 ">
-      <h2 className="py-4 items-center font-bold"> Popular Videos </h2>
+      <h2 className="py-4 items-center font-bold"> Popular Videos 1 </h2>
       </div>
+
       {/* card */}
-      <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5 ">
+      <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5">
               
         {!images ?
           "" :
           images.map((url, index, obj) => (
-            <div key={index} className="break-inside rounded-lg shadow-lg hover:scale-105 duration-300">
+            <div key={index} className="break-inside rounded-lg shadow-lg rounded-t-lg hover:scale-105 duration-300">
                <img src={url} alt="/" />
-               <div className="flex justify-between px-4 py-2 items-center ">
-                <p className="items-center py-2 flex">
-                  <CgProfile size={22} className="mr-2"/> New Img
+               <div className="flex justify-between px-4 py-2 items-center object-cover">
+                <p className="items-center py-2 justify-between flex font-semibold">
+                
+                  <CgProfile size={22} className="mr-2"/> Image Name
                   </p>
                   <span>
                     <button className="flex items-center py-1 px-4">
