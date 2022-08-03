@@ -12,23 +12,23 @@ const Header = () => {
       <div className="px-2 flex justify-between items-center w-full h-full">
         {/* Menu */}
         <div className="flex items-center">
-         <a href="/"><h1 className="text-white-600 text-4xl cursor-pointer font-bold ">.IMG PALACE</h1></a>
+         <a href="/"><h1 className="text-white-600 text-4xl cursor-pointer font-bold p-4 ">.IMG PALACE</h1></a>
           </div>
           <ul className="justify-center items-center hidden md:flex ">
             
-             <li>
+             <li className="hover:bg-gray-700/40 rounded-sm duration-500">
               <a href="/home">Home</a>
               </li>
-            <li>
+            <li className="hover:bg-gray-700/40 rounded-sm duration-500">
               <a href="/videos">Videos</a>
               </li>
-            <li>
+            <li className="hover:bg-gray-700/40 rounded-sm duration-500">
              <a href="/popular">Popular</a>
             </li>
-            <li>
+            <li className="hover:bg-gray-700/40 rounded-sm duration-500">
               <a href="/recent">Recent</a>
               </li>
-            <li>
+            <li className="hover:bg-gray-700/40 rounded-sm duration-500">
               <a href="/contact">Contact</a>
               </li>
           </ul>
@@ -36,10 +36,10 @@ const Header = () => {
        {/* Butoon */} 
         <div className="justify-center hidden md:flex p-4 ">
         <Link to='/login'>
-          <button className="bg-transparent px-4 py-3 pr-5 border-none font-semibold ">Login</button>
+          <button className="bg-transparent px-4 py-2.5 border-none hover:text-indigo-400 font-semibold hover:bg-gray-700/40 rounded-md duration-500 mr-2" >Login</button>
           </Link>
           <Link to='signup'>
-          <button className="px-8 py-3 font-semibold">Sign Up</button>
+          <button className="px-4 py-2 font-semibold duration-300">Sign Up</button>
           </Link>
         </div>
         {/* Mobile Hamburger */}
