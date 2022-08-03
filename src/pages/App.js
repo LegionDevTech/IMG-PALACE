@@ -32,9 +32,9 @@ function App() {
         <Route path="/signup" element={<Accounts/>} />
 
       </Routes>
-      
-      <Footer />
       <Videos />
+      <Footer />
+      
     </>
   );
 }
