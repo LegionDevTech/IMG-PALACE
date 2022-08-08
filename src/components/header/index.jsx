@@ -11,9 +11,9 @@ const Header = () => {
 
   const dynamicBGClass = () => {
     if (navigation.pathname === "/") {
-      return "flex w-full justify-between items-center p-2  z-10 text-white absolute";
+      return "flex w-full justify-between items-center p-2  z-10 text-white absolute  ";
     } else {
-      return "flex w-full justify-between items-center p-2  z-10 text-white relative bg-gray-600";
+      return "flex w-full justify-between items-center p-2  z-10 text-white relative bg-indigo-600 ";
     }
   };
 
@@ -39,12 +39,9 @@ const Header = () => {
             <li className="hover:bg-gray-700/40 rounded-sm duration-500">
               <a href="/recent">Recent</a>
             </li>
-            <li className="hover:bg-gray-700/40 rounded-sm duration-500">
-              <a href="/contact">Contact</a>
-            </li>
           </ul>
 
-          {/* Button */}
+          {/* Button
           <div className="justify-center hidden md:flex p-4 ">
             <Link to='/login'>
               <button className="bg-transparent px-4 py-3 pr-5 border-none font-semibold hover:bg-gray-700/40 rounded-sm duration-500 mr-2 ">Login</button>
@@ -52,7 +49,7 @@ const Header = () => {
             <Link to='signup'>
               <button className="px-8 py-3 font-semibold">Sign Up</button>
             </Link>
-          </div>
+          </div> */}
           {/* Mobile Hamburger */}
           <div onClick={handleClick} className="md:hidden z-10 cursor-pointer">
             {!nav ? <MenuIcon className="w-5 " /> : <XIcon className="w-5" />}
@@ -66,10 +63,10 @@ const Header = () => {
             <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase"><a href='/popular'>Popular</a></li>
             <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase"><a href='/recent'>Recent</a></li>
             <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase"><a href='/contact'>Contact</a></li>
-            <div className="flex flex-col my-6">
+            {/* <div className="flex flex-col my-6">
               <button className="bg-transparent text-indigo-500 px-8 py-3 mb-4">Sign In</button>
               <button className="px-8 py-3">Sign Up</button>
-            </div>
+            </div> */}
           </ul>
         </div>
       </div>

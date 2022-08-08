@@ -6,6 +6,8 @@ import Login from "./login";
 import Signup from "./signup";
 
 
+
+
 const Content = () => {
 
     return (
@@ -20,6 +22,7 @@ const Content = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+          
             {/* <Route path="*" element={<NotFound />}/> */}
         </Routes>
     );
