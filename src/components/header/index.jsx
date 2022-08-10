@@ -14,7 +14,7 @@ const Header = () => {
     if (navigation.pathname === "/") {
       return "flex w-full justify-between items-center p-2 z-10 text-white absolute  ";
     } else {
-      return "flex w-full justify-between items-center p-1  z-10 text-white relative shadow-lg sticky top-0 bg-indigo-600 ";
+      return "flex w-full justify-between items-center p-1  z-10 text-white relative shadow-lg sticky top-0 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] ";
     }
   };
 
@@ -26,7 +26,7 @@ const Header = () => {
         <div className="px-2 flex justify-between items-center w-full h-full">
           {/* Menu */}
           <div className="flex items-center">
-            <a href="/"><h1 className="text-white-600 text-4xl cursor-pointer font-bold ">.IMG PALACE</h1></a>
+            <a href="/"><h1 className="text-white-600 text-3xl cursor-pointer font-bold ">.IMG PALACE</h1></a>
           </div>
           <div className="bg-gray-100/90 rounded-md flex items-center px-2 w-[100px] sm:w-[200px] lg:w-[400px] ">
             <input className='bg-transparent w-full focus:outline-none p-1 text-sm' type="text" placeholder="Search here"/>
@@ -34,7 +34,7 @@ const Header = () => {
               <AiOutlineSearch size={20} className='-mr-1 hover:fill-green-600' />
             </button2>
           </div>
-          <ul className="justify-center items-center hidden md:flex ">
+          <ul className="justify-center items-center hidden md:flex text-sm ">
 
             <li className="hover:bg-gray-700/40 rounded-sm duration-500">
               <a href="/">Home</a>
