@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="w-full bg-gray-200 py-16">
+    <div className="w-full py-16 bg-gradient-to-l from-[#0f2527] to-[#2C5364] text-white border-t-2 border-zinc-600">
       <div className="max-w-none mx-auto flex flex-col px-4">
         <div className="sm:flex text-center justify-between items-center">
           <a href="/">
@@ -17,7 +17,7 @@ const Footer = () => {
             </h1>
           </a>
           <div className="flex justify-between w-full sm:max-w-[240px] my-2">
-            <FaFacebook size={28} className="icon hover:text-indigo-400 duration-300" />
+            <FaFacebook size={28} className="icon hover:text-blue-600 duration-300" />
 
             <FaInstagram size={28} className="icon hover:text-pink-500" />
             <FaPinterest size={28} className="icon hover:text-red-700" />

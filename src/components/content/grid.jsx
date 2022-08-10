@@ -39,9 +39,20 @@ const Grid = () => {
     };
 
     return (
-        <div className="max-w-none mx-auto py-16 px-8">
-            <div className=" bg-gradient-to-r from-[#ebebfc] pl-4 ">
-                <h2 className="py-4 items-center font-bold">{getTitle()}</h2>
+        <div className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
+            <div className=" bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
+                <h2 className="py-2 items-center font-bold">{getTitle()}</h2>
+            </div>
+            {/* filter row */}
+            <div className="max-w-none m-auto px-2 py-3">
+                    <div className="relative justify-between ">
+                        <button className="rounded-full m-1 border-indigo-400 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-indigo-400 hover:text-white hover:duration-500">Trending</button>
+                        <button className="rounded-full m-1 border-indigo-400 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-indigo-400 hover:text-white hover:duration-500">Nature</button>
+                        <button className="rounded-full m-1 border-indigo-400 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-indigo-400 hover:text-white hover:duration-500">Abstract</button>
+                        <button className="rounded-full m-1 border-indigo-400 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-indigo-400 hover:text-white hover:duration-500">Cars</button>
+                        <button className="rounded-full m-1 border-indigo-400 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-indigo-400 hover:text-white hover:duration-500">Girls</button>
+                        <button className="rounded-full m-1 border-indigo-400 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-indigo-400 hover:text-white hover:duration-500">Sunset</button>
+                    </div>
             </div>
             {Gridcard}
         </div>

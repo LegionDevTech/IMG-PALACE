@@ -26,14 +26,12 @@ const Background = () => {
                         typeSpeed={120} backSpeed={140} loop
                     />
                 </div>
-                <form className='flex justify-between items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-black bg-gray-100/90'>
-                    <div>
-                        <input className='bg-transparent w-[300px] sm:w-[640px] focus:outline-none p-2' type="text" placeholder='Search Here' />
-                    </div>
-                    <div className='flex'>
+              
+                    <div className='flex justify-between items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-black bg-gray-100/90'>
+                        <input className='bg-transparent w-[300px] sm:w-[600px] focus:outline-none p-2' type="text" placeholder='Search Here' />
                         <button><AiOutlineSearch size={22} className='icon m-2 hover:fill-green-600 hover:border-slate-600' /></button>
                     </div>
-                </form>
+                
             </div>
         </div>
     );
