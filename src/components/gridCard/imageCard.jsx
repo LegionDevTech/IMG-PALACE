@@ -25,24 +25,23 @@ const ImageCard = () => {
 
 
     return (
-        <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5">
+        <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-6">
 
             {!gridData ?
                 "" :
                 gridData.map((tileData, index, obj) => (
-                    <div key={index} className="break-inside rounded-lg shadow-lg rounded-t-lg hover:scale-105 duration-300">
+                    
+                    <div key={index} className=" break-inside shadow-lg hover:scale-105 duration-300">
                         <img src={tileData.src} alt="/" />
-                        <div className="absolute justify-center px-5 py-4 items-center top-0 bottom-0  object-cover">
+                        <div className="relative px-3 justify-between items-center">
                             {/* <p className="items-center py-2 flex">
                                 {tileData.alt}
                             </p> */}
-                            <div>
-
-                                <button className="absolute items-center py-1 px-1 rounded-md  hover:duration-500 hover:text-green-300">
-                                    <CgSoftwareDownload size={22} />
+                            
+                                <button className="absolute bottom-3 py-1 px-1 rounded-md  hover:duration-500 hover:text-white hover:bg-transparent">
+                                    <a href="downloads"><CgSoftwareDownload size={22} /></a>
                                 </button>
                         
-                            </div>
                         </div>
                     </div>
                 ))}
