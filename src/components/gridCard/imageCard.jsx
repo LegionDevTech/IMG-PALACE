@@ -34,8 +34,7 @@ const ImageCard = () => {
             {!gridData ?
                 "" :
                 gridData.map((tileData, index, obj) => (
-
-                    <div key={index} className="break-inside rounded-md shadow-lg hover:scale-105 duration-300">
+                    <div key={index} className="break-inside rounded-md shadow-lg hover:scale-105 duration-300 h-90" style={{ height: tileData.height }} >
                         <img src={tileData.src} alt="/" className="rounded-md" />
                         <div className="relative px-3 justify-center items-center">
                             {/* <p className="items-center py-2 flex">
