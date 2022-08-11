@@ -22,18 +22,23 @@ const Header = () => {
   return (
     <>
       <div className={dynamicBGClass()}>
-     
+
         <div className="px-2 flex justify-between items-center w-full h-full">
           {/* Menu */}
           <div className="flex items-center">
             <a href="/"><h1 className="text-white-600 text-3xl cursor-pointer font-bold ">.IMG PALACE</h1></a>
           </div>
-          <div className="bg-[#0f2527]  shadow-xl rounded-md flex items-center px-2 w-[100px] sm:w-[200px] lg:w-[400px] ">
-            <input className='bg-transparent w-full focus:outline-none p-1.5 text-sm' type="text" placeholder="Search here"/>
-            <button2 className="justify-between items-center text-gray-300 px-1 py-1 rounded-md cursor-pointer">
-              <AiOutlineSearch size={20} className='-mr-1 hover:fill-green-600' />
-            </button2>
-          </div>
+
+          {navigation.pathname !== '/' &&
+            /* Search bar for other pages */
+            <div className="bg-[#0f2527]  shadow-xl rounded-md flex items-center px-2 w-[100px] sm:w-[200px] lg:w-[400px] ">
+              <input className='bg-transparent w-full focus:outline-none p-1.5 text-sm' type="text" placeholder="Search here" />
+              <button2 className="justify-between items-center text-gray-300 px-1 py-1 rounded-md cursor-pointer">
+                <AiOutlineSearch size={20} className='-mr-1 hover:fill-green-600' />
+              </button2>
+            </div>
+          }
+
           <ul className="justify-center items-center hidden md:flex text-sm ">
 
             <li className="hover:bg-gray-700/40 rounded-sm duration-500">
