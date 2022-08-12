@@ -1,4 +1,5 @@
 import React from "react";
+import { BsArrowDownShort } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import ImageCard from "../gridCard/imageCard";
 import VideoCard from "../gridCard/videoCard";
@@ -45,16 +46,23 @@ const Grid = () => {
             </div>
             {/* filter row */}
             <div className="max-w-none m-auto px-2 py-3">
-                    <div className="relative justify-between ">
-                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] hover:text-white hover:duration-600">Trending</button>
-                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] hover:text-white hover:duration-600">Nature</button>
-                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] hover:text-white hover:duration-600">Abstract</button>
-                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] hover:text-white hover:duration-600">Cars</button>
-                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] hover:text-white hover:duration-600">Girls</button>
-                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] hover:text-white hover:duration-600">Sunset</button>
+                    <div className="relative justify-between focus:shadow-lg ">
+                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] ">Trending</button>
+                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">Nature</button>
+                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">Abstract</button>
+                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">Cars</button>
+                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">Girls</button>
+                        <button className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">Sunset</button>
                     </div>
             </div>
             {Gridcard}
+            {/* Pagination Button  */}
+            <div className="flex justify-center items-center my-5 p-4  ">
+                    {/* text */}
+                    <button className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">For More
+                    <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125 '/>
+                    </button>
+                </div>
         </div>
     );
 };

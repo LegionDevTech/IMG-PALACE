@@ -1,6 +1,7 @@
 import React from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
 import { saveAs } from 'file-saver';
+import {BsArrowDownShort} from 'react-icons/bs';
 
 const ImageCard = () => {
 
@@ -29,12 +30,12 @@ const ImageCard = () => {
 
 
     return (
-        <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
+        <div className="md:masonry-3-col lg:masonry-3-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
 
             {!gridData ?
                 "" :
                 gridData.map((tileData, index, obj) => (
-                    <div key={index} className="break-inside rounded-md shadow-lg hover:scale-105 duration-300 h-90" style={{ height: tileData.height }} >
+                    <div key={index} className="break-inside rounded-md shadow-lg hover:scale-105 duration-300">
                         <img src={tileData.src} alt="/" className="rounded-md" />
                         <div className="relative px-3 justify-center items-center">
                             {/* <p className="items-center py-2 flex">
@@ -49,7 +50,7 @@ const ImageCard = () => {
                         </div>
                     </div>
                 ))}
-
+                
         </div>
     );
 
