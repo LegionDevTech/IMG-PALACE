@@ -2,7 +2,7 @@ import React from "react";
 import { CgArrowLongUpL } from "react-icons/cg";
 import {
   FaFacebook,
-  FaTwitter,
+
   FaInstagram,
   FaPinterest,
 } from "react-icons/fa";
@@ -29,10 +29,9 @@ const Footer = () => {
         {/* Footer Menu  */}
         <div className="flex justify-between ">
           <ul className="lg:flex">
-            <li>About</li>
-
+            <a href="aboutimg"><li>About</li></a>
             <li>Language</li>
-            <li>Cookie Policy</li>
+            <a href="cookiesimg"><li>Cookie Policy</li></a>
           </ul>
           <ul className="text-right lg:flex">
             <a href="/">

@@ -4,7 +4,9 @@ import Contact from "./contact";
 import Grid from "./grid";
 import Login from "./login";
 import Signup from "./signup";
-import Downloads from './downloads';
+import Aboutimg from "./aboutimg";
+import Cookiesimg from "./cookiesimg";
+
 
 
 
@@ -22,7 +24,8 @@ const Content = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/downloads" element={<Downloads />} />
+            <Route path="/aboutimg" element={<Aboutimg />} />
+            <Route path="/Cookiesimg" element={<Cookiesimg />} />
             {/* <Route path="*" element={<NotFound />}/> */}
         </Routes>
     );

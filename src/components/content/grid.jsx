@@ -40,7 +40,7 @@ const Grid = () => {
     };
 
     return (
-        <div className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
+        <div className="max-w-none mx-auto py-8 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
             <div className=" bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
                 <h2 className="py-2 items-center font-bold">{getTitle()}</h2>
             </div>
@@ -56,10 +56,10 @@ const Grid = () => {
                     </div>
             </div>
             {Gridcard}
-            {/* Pagination Button  */}
+            {/* load more Button  */}
             <div className="flex justify-center items-center my-5 p-4  ">
                     {/* text */}
-                    <button className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">For More
+                    <button className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">Load More
                     <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125 '/>
                     </button>
                 </div>
