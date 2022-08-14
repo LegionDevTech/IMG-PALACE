@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useLocation, useNavigate } from "react-router-dom";
 import v1 from '../../assets/videos/v1.mp4';
 import Typed from 'react-typed';
+import API from "../../services/API";
+import ImageCard from "../gridCard/imageCard";
 
 const Background = () => {
+
+    const [searchInput, setSearchInput] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    const onBigSearchButtonPress = (sQuery) => {
+        // navigate to pathname with query
+        navigate({
+            pathname: location.pathname,
+            search: sQuery,
+        });
+    };
 
     return (
         <div className='w-full h-screen realtive'>
@@ -27,14 +41,14 @@ const Background = () => {
                         typeSpeed={120} backSpeed={140} loop
                     />
                 </div>
-              {/* main search box  */}
-                    <div className='flex justify-between items-center max-w-[650px] mx-auto w-full border-none p-1 rounded-md text-black bg-gray-200/90'>
-                        <input className='bg-transparent w-[300px] sm:w-[600px] focus:outline-none p-2' type="text" placeholder='Search Here' />
-                        <button className=' hover:bg-green-600 hover:border-green-600 hover:duration-200  ml-2 '>
-                            <AiOutlineSearch size={22} className='m-2 hover:rotate-90 hover:duration-500' />
-                        </button>
-                    </div>
-                
+                {/* main search box  */}
+                <div className='flex justify-between items-center max-w-[650px] mx-auto w-full border-none p-1 rounded-md text-black bg-gray-200/90'>
+                    <input onInput={e => setSearchInput(e.target.value)} className='bg-transparent w-[300px] sm:w-[600px] focus:outline-none p-2' type="text" placeholder='Search Here' />
+                    <button onClick={() => onBigSearchButtonPress(searchInput)} className=' hover:bg-green-600 hover:border-green-600 hover:duration-200  ml-2 '>
+                        <AiOutlineSearch size={22} className='m-2 hover:rotate-90 hover:duration-500' />
+                    </button>
+                </div>
+
             </div>
         </div>
     );

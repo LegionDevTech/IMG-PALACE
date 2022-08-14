@@ -1,16 +1,30 @@
+// react imports
 import React, { useState } from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Route, Routes, Link, useLocation } from "react-router-dom";
-import Background from "./background";
+import { Route, Routes, Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 
+// custom imports
+import Background from "./background";
+
 const Header = () => {
+
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-  const navigation = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchInput, setSearchInput] = useState('');
+
+  const onSmallSearchButtonPress = (sQuery) => {
+    // navigate to pathname with query
+    navigate({
+      pathname: location.pathname,
+      search: sQuery,
+    });
+  };
 
   const dynamicBGClass = () => {
-    if (navigation.pathname === "/") {
+    if (location.pathname === "/") {
       return "flex w-full justify-between items-center p-2 z-10 text-white absolute  ";
     } else {
       return "flex w-full justify-between items-center p-2 z-10 text-white relative shadow-lg sticky top-0 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] ";
@@ -30,15 +44,15 @@ const Header = () => {
             </a>
           </div>
 
-          {navigation.pathname !== "/" && (
+          {location.pathname !== "/" && (
             /* Search bar for other pages */
             <div className="bg-[#0f2527]  shadow-xl rounded-md flex items-center px-2 w-[100px] sm:w-[200px] lg:w-[400px] ">
-              <input
+              <input onInput={e => setSearchInput(e.target.value)}
                 className="bg-transparent w-full focus:outline-none p-1.5 text-sm"
                 type="text"
                 placeholder="Search here"
               />
-              <button2 className="justify-between items-center text-gray-300 px-1 py-1 rounded-md cursor-pointer">
+              <button2 onClick={() => onSmallSearchButtonPress(searchInput)} className="justify-between items-center text-gray-300 px-1 py-1 rounded-md cursor-pointer">
                 <AiOutlineSearch
                   size={20}
                   className="-mr-1 hover:fill-green-600"
@@ -46,9 +60,9 @@ const Header = () => {
               </button2>
             </div>
           )}
-          
+
           {/* side nav button  */}
-          
+
           <ul className="justify-between items-center hidden md:flex text-sm">
             <li>
               <a
@@ -62,7 +76,7 @@ const Header = () => {
               <a
                 href="/videos"
                 className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4 "
-                >
+              >
                 Videos
               </a>
             </li>
@@ -73,12 +87,12 @@ const Header = () => {
               <a
                 href="/recent"
                 className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4"
-                >
+              >
                 Recent
               </a>
             </li>
           </ul>
-              
+
 
           {/* Button
           <div className="justify-center hidden md:flex p-4 ">
