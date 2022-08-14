@@ -17,11 +17,10 @@ const ImageCard = () => {
      * Load Grid cards on page load
      */
     React.useEffect(() => {
-        debugger;
         if (navigator.onLine) {
-            API.getImages("").then(function (value) { setGridData(value); });
+            API.getImages(location.pathname, location.search).then(function (value) { setGridData(value); });
         }
-    }, []);
+    }, [location]);
 
     return (
         <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">

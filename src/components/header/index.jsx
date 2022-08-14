@@ -19,7 +19,7 @@ const Header = () => {
     // navigate to pathname with query
     navigate({
       pathname: location.pathname,
-      search: sQuery,
+      search: "query=" + sQuery
     });
   };
 
