@@ -4,6 +4,7 @@ import { saveAs } from 'file-saver';
 import { useLocation } from "react-router-dom";
 import { BsArrowDownShort } from 'react-icons/bs';
 import API from "../../services/API";
+import BusyCards from "./busyCards";
 
 const ImageCard = () => {
 
@@ -23,9 +24,13 @@ const ImageCard = () => {
     }, [location]);
 
     return (
-        <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
+        <>
             {!gridData ?
-                ""
+                <>
+                    <BusyCards />
+                    <BusyCards />
+                    <BusyCards />
+                </>
                 :
                 gridData.map((tileData, index, obj) => (
                     <div key={index} className="break-inside rounded-md shadow-lg hover:scale-105 duration-300">
@@ -37,8 +42,7 @@ const ImageCard = () => {
                         </div>
                     </div>
                 ))}
-
-        </div>
+        </>
     );
 
 };

@@ -16,14 +16,14 @@ const Content = () => {
 
         <Routes>
             {/* <Route path={["/home", "/videos", "/popular", "/recent"]} element={<Grid />} /> */}
-            <Route path="/" element={<Grid />} />
-            <Route path="/home" element={<Grid />} />
+            <Route path="/" index={true} element={<Grid />} />
+            <Route path="/images" element={<Grid />} />
             <Route path="/videos" element={<Grid />} />
-            <Route path="/popular" element={<Grid />} />
-            <Route path="/recent" element={<Grid />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            {/* <Route path="/popular" element={<Grid />} /> */}
+            {/* <Route path="/recent" element={<Grid />} /> */}
+            {/* <Route path="/contact" element={<Contact />} /> */}
+            {/* <Route path="/login" element={<Login />} /> */}
+            {/* <Route path="/signup" element={<Signup />} /> */}
             <Route path="/aboutimg" element={<Aboutimg />} />
             <Route path="/Cookiesimg" element={<Cookiesimg />} />
             {/* <Route path="*" element={<NotFound />}/> */}

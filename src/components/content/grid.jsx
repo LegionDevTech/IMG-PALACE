@@ -1,17 +1,17 @@
 import React from "react";
 import { BsArrowDownShort } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
-import ImageCard from "../gridCard/imageCard";
-import VideoCard from "../gridCard/videoCard";
+import ImageCards from "../gridCard/imageCards";
+import VideoCards from "../gridCard/videoCards";
 
 const Grid = () => {
 
     const location = useLocation();
-    var Gridcard;
+    var gridCards;
     if (location.pathname === "/videos") {
-        Gridcard = <VideoCard />
-    } else {
-        Gridcard = <ImageCard />
+        gridCards = <VideoCards />
+    } else if (location.pathname === "/images") {
+        gridCards = <ImageCards />
     }
 
     const getTitle = () => {
@@ -20,18 +20,21 @@ const Grid = () => {
             case "/":
                 title = "Home";
                 break;
+            case "/images":
+                title = "Images";
+                break;
             case "/videos":
                 title = "Videos";
                 break;
-            case "/popular":
-                title = "Popular";
-                break;
-            case "/recent":
-                title = "Recent";
-                break;
-            case "/contact":
-                title = "Contact Us";
-                break;
+            // case "/popular":
+            //     title = "Popular";
+            //     break;
+            // case "/recent":
+            //     title = "Recent";
+            //     break;
+            // case "/contact":
+            //     title = "Contact Us";
+            //     break;
             default:
                 title = "Title Not found";
                 break;
@@ -55,7 +58,9 @@ const Grid = () => {
                     <button className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">Sunset</button>
                 </div>
             </div>
-            {Gridcard}
+            <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
+                {gridCards}
+            </div>
             {/* Pagination Button  */}
             <div className="flex justify-center items-center my-5 p-4  ">
                 {/* text */}

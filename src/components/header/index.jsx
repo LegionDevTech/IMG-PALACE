@@ -74,23 +74,29 @@ const Header = () => {
             </li>
             <li>
               <a
+                href="/images"
+                className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4 ">
+                Images
+              </a>
+            </li>
+            <li>
+              <a
                 href="/videos"
-                className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4 "
-              >
+                className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4 ">
                 Videos
               </a>
             </li>
             {/* <li>
               <a href="/popular" className="hover:bg-gray-700/40 rounded-sm duration-500 p-4">Popular</a>
             </li> */}
-            <li>
+            {/* <li>
               <a
                 href="/recent"
                 className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4"
               >
                 Recent
               </a>
-            </li>
+            </li> */}
           </ul>
 
 
@@ -121,17 +127,20 @@ const Header = () => {
               <a href="/home">Home</a>
             </li>
             <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
+              <a href="/images">Images</a>
+            </li>
+            <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
               <a href="/videos">Videos</a>
             </li>
-            <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
+            {/* <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
               <a href="/popular">Popular</a>
-            </li>
-            <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
+            </li> */}
+            {/* <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
               <a href="/recent">Recent</a>
-            </li>
-            <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
+            </li> */}
+            {/* <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
               <a href="/contact">Contact</a>
-            </li>
+            </li> */}
             {/* <div className="flex flex-col my-6">
               <button className="bg-transparent text-indigo-500 px-8 py-3 mb-4">Sign In</button>
               <button className="px-8 py-3">Sign Up</button>

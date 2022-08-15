@@ -4,8 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import v1 from '../../assets/videos/v1.mp4';
 import Typed from 'react-typed';
 import API from "../../services/API";
-import ImageCard from "../gridCard/imageCard";
-
 const Background = () => {
 
     const [searchInput, setSearchInput] = useState('');
