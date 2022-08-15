@@ -1,4 +1,5 @@
-import React from 'react'
+// react imports
+import React from 'react';
 
 export default function busyCards() {
     return (

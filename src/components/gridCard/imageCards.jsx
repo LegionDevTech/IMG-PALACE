@@ -1,14 +1,16 @@
+//react imports
 import React from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
 import { saveAs } from 'file-saver';
 import { useLocation } from "react-router-dom";
-import { BsArrowDownShort } from 'react-icons/bs';
+
+// custom imports
 import API from "../../services/API";
 import BusyCards from "./busyCards";
 
-const ImageCard = () => {
+const ImageCard = (props) => {
 
-    const [gridData, setGridData] = React.useState(null);
+    const [gridData, setGridData] = React.useState([]);
     const location = useLocation();
     const downloadFile = (sURL, sName) => {
         saveAs(sURL, sName);
@@ -19,13 +21,18 @@ const ImageCard = () => {
      */
     React.useEffect(() => {
         if (navigator.onLine) {
-            API.getImages(location.pathname, location.search).then(function (value) { setGridData(value); });
+            setGridData([]);
+            API.getImages(location.pathname, location.search, props.page)
+                .then(function (value) {
+                    // TODO: handle load more :- pagination
+                    setGridData(value);
+                });
         }
     }, [location]);
 
     return (
         <>
-            {!gridData ?
+            {gridData.length === 0 ?
                 <>
                     <BusyCards />
                     <BusyCards />
@@ -41,7 +48,8 @@ const ImageCard = () => {
                             </button2>
                         </div>
                     </div>
-                ))}
+                )
+                )}
         </>
     );
 
