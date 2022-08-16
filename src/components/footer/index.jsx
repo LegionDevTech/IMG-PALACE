@@ -1,8 +1,8 @@
+// react imports
 import React from "react";
 import { CgArrowLongUpL } from "react-icons/cg";
 import {
   FaFacebook,
-
   FaInstagram,
   FaPinterest,
 } from "react-icons/fa";
@@ -43,11 +43,11 @@ const Footer = () => {
               <li className="hover:text-blue-400">Home</li>
             </a>
 
-            <a href="popular">
-              <li className="hover:text-blue-400">Popular</li>
+            <a href="images">
+              <li className="hover:text-blue-400">Images</li>
             </a>
-            <a href="recent">
-              <li className="hover:text-blue-400">Recent</li>
+            <a href="videos">
+              <li className="hover:text-blue-400">Videos</li>
             </a>
           </ul>
         </div>
