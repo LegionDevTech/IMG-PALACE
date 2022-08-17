@@ -19,12 +19,11 @@ const Content = () => {
             <Route path="/videos" element={<Grid />} />
             <Route path="/aboutimg" element={<Aboutimg />} />
             <Route path="/Cookiesimg" element={<Cookiesimg />} />
-<<<<<<< HEAD
+
             <Route path="/modal" element={<Modal />} />
             {/* <Route path="*" element={<NotFound />}/> */}
-=======
->>>>>>> 3e857eddddf233a257c1ca77146c8e8b4437a8e5
-        </Routes>
+
+            </Routes>
     );
 };
 
