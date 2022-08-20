@@ -4,7 +4,7 @@ import img1 from './img1.jpg';
 import { MdDownload } from 'react-icons/md';
 import { XIcon } from '@heroicons/react/outline';
 
-const Modal = () => {
+const Modal = (props) => {
 
     const [drop, setDrop] = useState(false);
     const handleClick = () => setDrop(!drop);
@@ -14,9 +14,9 @@ const Modal = () => {
         <div className='fixed inset-0 z-50 bg-blue-500/80 backdrop-blur-sm overflow-auto box-border pt-14'>
 
             {/* close btn  */}
-            <button1 href="/" className='top-6 right-auto left-6 fixed text-white font-bold cursor-pointer '>
+            <button onClick={props.toggleDownload} className='top-6 right-auto left-6 fixed text-white font-bold cursor-pointer '>
                 <AiOutlineClose size={22} />
-            </button1>
+            </button>
 
             {/* BG container  */}
             <div className='flex items-center justify-center text-white rounded-lg w-11/12  h-auto mx-auto bg-orange-500 '>
@@ -25,7 +25,7 @@ const Modal = () => {
                 <div className='relative flex-col w-11/12 h-full py-8 justify-center items-center bg-blue-400'>
                     {/* img card | image is resizing on breakpoints fix nedded */}
                     <div className='relative overflow-hidden h-96 justify-center items-center rounded bg-teal-700  '>
-                        <img src="https://images.pexels.com/photos/12890617/pexels-photo-12890617.jpeg" alt="/" className='w-full h-full absolute object-cover' />
+                        <img src={props.tileData.src} alt="/" className='w-full h-full absolute object-cover' />
                     </div>
                     {/* download and resolution buttons  will have to create onclick listener  */}
                     <div className='flex md:justify-start lg:justify-start justify-center gap-1 items-center w-full px-4 my-8 py-8 duration:700'>
