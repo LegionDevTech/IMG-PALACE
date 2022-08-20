@@ -21,14 +21,13 @@ const ImageCard = (props) => {
      */
     React.useEffect(() => {
         if (navigator.onLine) {
-            setGridData([]);
             API.getImages(location.pathname, location.search, props.page)
                 .then(function (value) {
-                    // TODO: handle load more :- pagination
-                    setGridData(value);
+                    setGridData([...gridData, ...value]);
                 });
         }
-    }, [location]);
+    }, [location, props.page]);
+
 
     return (
         <>
