@@ -15,6 +15,12 @@ const Grid = (props) => {
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
     const [gridData, setGridData] = React.useState([]);
     var tempLocationSearch = React.useRef(location.search);
+    const searchTagNames = [
+        { searchText: "nature", displayText: "Nature" },
+        { searchText: "abstract", displayText: "Abstract" },
+        { searchText: "cars", displayText: "Cars" },
+        { searchText: "sunset", displayText: "Sunset" }
+    ];
 
 
     React.useEffect(() => {
@@ -84,18 +90,13 @@ const Grid = (props) => {
                     }
 
                     {/* display common search tags */}
-                    <button onClick={() => onSearchTagClick("nature")} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
-                        Nature
-                    </button>
-                    <button onClick={() => onSearchTagClick("abstract")} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
-                        Abstract
-                    </button>
-                    <button onClick={() => onSearchTagClick("cars")} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
-                        Cars
-                    </button>
-                    <button onClick={() => onSearchTagClick("sunset")} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
-                        Sunset
-                    </button>
+                    {
+                        searchTagNames.map((val, index, obj) => (
+                            <button onClick={() => onSearchTagClick(val.searchText)} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
+                                {val.displayText}
+                            </button>
+                        ))
+                    }
                 </div>
             </div>
             <div className="md:masonry-3-col lg:masonry-3-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
