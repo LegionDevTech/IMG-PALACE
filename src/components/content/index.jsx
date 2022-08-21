@@ -9,7 +9,7 @@ import Cookiesimg from "./cookiesimg";
 import Modal from "./modal";
 
 
-const Content = () => {
+const Content = (props) => {
 
     return (
 
@@ -23,7 +23,7 @@ const Content = () => {
             <Route path="/modal" element={<Modal />} />
             {/* <Route path="*" element={<NotFound />}/> */}
 
-            </Routes>
+        </Routes>
     );
 };
 

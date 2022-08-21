@@ -7,7 +7,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 // custom imports
 import Background from "./background";
 
-const Header = () => {
+const Header = (props) => {
 
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
@@ -30,17 +30,12 @@ const Header = () => {
     });
   };
 
-  const dynamicBGClass = () => {
-    if (location.pathname === "/") {
-      return "flex w-full justify-between items-center p-2 z-10 text-white absolute  ";
-    } else {
-      return "flex w-full justify-between items-center p-2 z-10 text-white relative shadow-lg sticky top-0 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] ";
-    }
-  };
-
   return (
     <>
-      <div className={dynamicBGClass()}>
+      <div className={
+        location.pathname === "/" ?
+          "flex w-full justify-between items-center p-2 z-10 text-white absolute" :
+          "flex w-full justify-between items-center p-2 z-10 text-white relative shadow-lg sticky top-0 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] "}>
         <div className="flex justify-between items-center w-full h-full px-2">
           {/* Menu */}
           <div className="flex items-center">

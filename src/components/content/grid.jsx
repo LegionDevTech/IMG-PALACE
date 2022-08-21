@@ -6,40 +6,53 @@ import { useLocation, useNavigate } from "react-router-dom";
 // custom imports
 import ImageCards from "../gridCard/imageCards";
 import VideoCards from "../gridCard/videoCards";
+import API from "../../services/API";
 
-const Grid = () => {
+const Grid = (props) => {
 
-    const [page, setPage] = React.useState(1);
     const location = useLocation();
     const navigate = useNavigate();
-    var gridCards;
-    if (location.pathname === "/videos") {
-        gridCards = <VideoCards page={page} />
-    } else if (location.pathname === "/images") {
-        gridCards = <ImageCards page={page} />
-    }
+    const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
+    const [gridData, setGridData] = React.useState([]);
+    var tempLocationSearch = React.useRef(location.search);
+
+
+    React.useEffect(() => {
+        // check if browser is online
+        if (navigator.onLine) {
+            // check if location pathname is /images
+            if (location.pathname === "/images") {
+                var tempGridData = [];
+                if (tempLocationSearch.current === location.search) {
+                    tempGridData = gridData;
+                }
+                tempLocationSearch.current = location.search;
+                // get data for images based on pathname, search query and pages
+                API.getImages(location.pathname, location.search, loadMorePageCount)
+                    .then(function (value) {
+                        setGridData([...tempGridData, ...value]);
+                    });
+            }
+        }
+    }, [location, loadMorePageCount]);
+
+
 
     const getTitle = () => {
-        var title = "";
         switch (location.pathname) {
             case "/":
-                title = "Home";
-                break;
+                return "Home";
             case "/images":
-                title = "Images";
-                break;
+                return "Images";
             case "/videos":
-                title = "Videos";
-                break;
+                return "Videos";
             default:
-                title = "Title Not found";
-                break;
+                return "Title Not found";
         }
-        return title;
     };
 
     const onSearchTagClick = (sQuery) => {
-        setPage(1);
+        setLoadMorePageCount(1);
         // navigate to pathname with query
         navigate({
             pathname: location.pathname,
@@ -86,12 +99,21 @@ const Grid = () => {
                 </div>
             </div>
             <div className="md:masonry-3-col lg:masonry-3-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
-                {gridCards}
+                {
+                    location.pathname === "/images"
+                    &&
+                    <ImageCards gridData={gridData} />
+                }
+                {
+                    location.pathname === "/videos"
+                    &&
+                    <VideoCards />
+                }
             </div>
             {/* Pagination Button  */}
             <div className="flex justify-center items-center my-5 p-4  ">
                 {/* text */}
-                <button onClick={() => setPage(page + 1)} className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">For More
+                <button onClick={() => setLoadMorePageCount(loadMorePageCount + 1)} className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">For More
                     <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125 ' />
                 </button>
             </div>
