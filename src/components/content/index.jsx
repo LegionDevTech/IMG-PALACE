@@ -7,6 +7,7 @@ import Grid from "./grid";
 import Aboutimg from "./aboutimg";
 import Cookiesimg from "./cookiesimg";
 import Modal from "./modal";
+import Error404 from "./error404";
 
 
 const Content = (props) => {
@@ -19,8 +20,8 @@ const Content = (props) => {
             <Route path="/videos" element={<Grid />} />
             <Route path="/aboutimg" element={<Aboutimg />} />
             <Route path="/Cookiesimg" element={<Cookiesimg />} />
-
             <Route path="/modal" element={<Modal />} />
+            <Route path="/error404" element={<Error404 />} />
             {/* <Route path="*" element={<NotFound />}/> */}
 
         </Routes>
