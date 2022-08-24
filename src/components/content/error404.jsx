@@ -16,7 +16,7 @@ const error404 = () => {
                     The page you are trying to access does not exsists.
                 </h4>
                 <h1 className='uppercase font-sans font-bold py-2 px-2 hover:rounded-md hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-300'>
-                    .img palace 
+                   <a href="/">.img palace </a> 
                 </h1>
         </div>
     </div>

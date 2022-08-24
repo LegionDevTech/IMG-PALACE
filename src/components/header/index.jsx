@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
+import {IoMdImages} from "react-icons/io"
+import {MdVideoLibrary} from "react-icons/md"
 
 // custom imports
 import Background from "./background";
@@ -67,17 +69,20 @@ const Header = (props) => {
 
           <ul className="justify-between items-center hidden md:flex text-sm">
             <li>
-              <a href="/" className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4">
+              <a href="/" className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3">
+              <AiFillHome size={18} className="mr-2"/>
                 Home
               </a>
             </li>
             <li>
-              <a href="/images" className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4 ">
+              <a href="/images" className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3 ">
+                <IoMdImages size={18} className='mr-2' />
                 Images
               </a>
             </li>
             <li>
-              <a href="/videos" className="hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-4 ">
+              <a href="/videos" className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3 ">
+                <MdVideoLibrary size={18} className="mr-2" />
                 Videos
               </a>
             </li>
