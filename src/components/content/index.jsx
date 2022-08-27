@@ -21,9 +21,7 @@ const Content = (props) => {
             <Route path="/aboutimg" element={<Aboutimg />} />
             <Route path="/Cookiesimg" element={<Cookiesimg />} />
             <Route path="/modal" element={<Modal />} />
-            <Route path="/error404" element={<Error404 />} />
-            {/* <Route path="*" element={<NotFound />}/> */}
-
+            <Route path="*" element={<Error404 />} />
         </Routes>
     );
 };
