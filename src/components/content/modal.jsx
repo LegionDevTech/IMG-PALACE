@@ -11,32 +11,32 @@ const Modal = (props) => {
 
     return (
 
-        <div className='fixed inset-0 z-50 bg-blue-500/80 backdrop-blur-sm overflow-auto box-border pt-14'>
+        <div className='fixed -inset-4 z-50 bg-gray-500/80 backdrop-blur-sm overflow-auto box-border pt-8 pb-8'>
 
             {/* close btn  */}
-            <button onClick={props.toggleDownload} className='top-6 right-auto left-6 fixed text-white font-bold cursor-pointer '>
+            <button onClick={props.toggleDownload} className='top-0 right-auto left-6 sticky text-white font-bold cursor-pointer '>
                 <AiOutlineClose size={22} />
             </button>
 
             {/* BG container  */}
-            <div className='flex items-center justify-center text-white rounded-lg w-11/12  h-auto mx-auto bg-orange-500 '>
+            <div className='flex items-center justify-center text-white rounded-lg w-11/12  h-auto mx-auto bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] '>
 
                 {/* inner main div container  */}
-                <div className='relative flex-col w-11/12 h-full py-8 justify-center items-center bg-blue-400'>
+                <div className='relative flex-col w-full h-full py-4 justify-center items-center bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]'>
                     {/* img card | image is resizing on breakpoints fix nedded */}
-                    <div className='relative overflow-hidden h-96 justify-center items-center rounded bg-teal-700  '>
-                        <img src={props.tileData.src} alt="/" className='w-full h-full absolute object-cover' />
+                    <div className='flex  overflow-hidden lg:h-96 md:h-auto justify-center items-center rounded bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] '>
+                        <img src={props.tileData.src} alt="/" className='lg:h-full md:h-full aspect-auto flex' />
                     </div>
                     {/* download and resolution buttons  will have to create onclick listener  */}
                     <div className='flex md:justify-start lg:justify-start justify-center gap-1 items-center w-full px-4 my-8 py-8 duration:700'>
-                        <button2 className='flex items-center justify-center px-4 py-2 text-xs font-medium leading-4 uppercase font-sans rounded-l bg-teal-800/90 hover:text-teal-400  border-none  hover:shadow-lg  '>
+                        <button className='flex items-center justify-center px-4 py-2 text-xs font-medium leading-4 uppercase font-sans rounded-l bg-teal-800/90 hover:text-teal-400  border-none  hover:shadow-lg  '>
                             <MdDownload size={20} className='mr-1 hover:fill-teal-300 hover:animate-bounce hover:duration-700' />
                             Download
-                        </button2>
+                        </button>
 
-                        <button2 onClick={handleClick} className='inline-flex px-2 py-2.5 my-4 text-xs font-medium leading-4 uppercase rounded-r font-sans  bg-teal-800/90 hover:text-teal-200  border-none hover:shadow-lg  '>
+                        <button onClick={handleClick} className='inline-flex px-2 py-2.5 my-4 text-xs font-medium leading-4 uppercase rounded-r font-sans  bg-teal-800/90 hover:text-teal-200  border-none hover:shadow-lg  '>
                             {!drop ? <AiOutlineCaretDown size={16} className="duration-500" /> : <AiOutlineCaretDown size={16} className='-rotate-90 duration-500' aria-hidden="true" />}
-                        </button2>
+                        </button>
 
 
                         {/* Resoloution Dropdown  */}
