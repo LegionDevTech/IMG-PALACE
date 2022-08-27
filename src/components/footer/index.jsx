@@ -36,7 +36,6 @@ const Footer = () => {
           <ul className="lg:flex">
             <a href="aboutimg"><li>About</li></a>
             <li>Language</li>
-            <a href="cookiesimg"><li>Cookie Policy</li></a>
           </ul>
           <ul className="text-right lg:flex">
             <a href="/">

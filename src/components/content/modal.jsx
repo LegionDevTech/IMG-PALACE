@@ -13,12 +13,12 @@ const Modal = (props) => {
         <div className='fixed -inset-4 z-50 bg-gray-500/80 backdrop-blur-sm overflow-auto box-border pt-8 pb-8'>
 
             {/* close btn  */}
-            <button onClick={props.toggleDownload} className='top-0 right-auto left-6 sticky text-white font-bold cursor-pointer '>
+            <button onClick={props.toggleDownload} className='top-0 right-auto left-6 sticky text-white font-bold cursor-pointer z-10 '>
                 <AiOutlineClose size={22} />
             </button>
 
             {/* BG container  */}
-            <div className='flex items-center justify-center text-white rounded-lg w-11/12  h-auto mx-auto bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] '>
+            <div className='flex items-center px-2  justify-center text-white rounded-lg w-auto h-auto mx-6 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] '>
 
                 {/* inner main div container  */}
                 <div className='relative flex-col w-full h-full py-4 justify-center items-center bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]'>
