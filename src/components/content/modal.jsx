@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { AiOutlineCaretDown, AiOutlineCaretRight, AiOutlineClose } from 'react-icons/ai';
-import img1 from './img1.jpg';
+import { AiOutlineCaretDown, AiOutlineClose } from 'react-icons/ai';
 import { MdDownload } from 'react-icons/md';
-import { XIcon } from '@heroicons/react/outline';
+
 
 const Modal = (props) => {
 
