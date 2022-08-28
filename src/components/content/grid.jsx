@@ -92,7 +92,7 @@ const Grid = (props) => {
                     {/* display common search tags */}
                     {
                         searchTagNames.map((val, index, obj) => (
-                            <button onClick={() => onSearchTagClick(val.searchText)} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
+                            <button key={index} onClick={() => onSearchTagClick(val.searchText)} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
                                 {val.displayText}
                             </button>
                         ))
@@ -118,7 +118,7 @@ const Grid = (props) => {
                     <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125 ' />
                 </button>
             </div>
-        </div>
+        </div >
     );
 };
 

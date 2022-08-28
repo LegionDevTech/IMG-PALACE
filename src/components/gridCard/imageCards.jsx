@@ -23,7 +23,8 @@ const ImageCard = (props) => {
     const onImageLoad = (oEvent) => {
         let oParent = oEvent.target.parentElement;
         oParent.style.height = "auto";
-        oParent.parentElement.getElementsByClassName("imageCard-image-loader-animation")[0].style.display = "none"
+        // TODO: uncomment after implementing image loader
+        // oParent.parentElement.getElementsByClassName("imageCard-image-loader-animation")[0].style.display = "none"
     };
 
 
