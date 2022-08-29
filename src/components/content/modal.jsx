@@ -22,7 +22,6 @@ const Modal = (props) => {
 
                 {/* inner main div container  */}
                 <div className='relative flex-col w-full h-full py-4 justify-center items-center bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]'>
-                    {/* img card | image is resizing on breakpoints fix nedded */}
                     <div className='flex  overflow-hidden lg:h-96 md:h-auto justify-center items-center rounded bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] '>
                         <img src={props.tileData.src} alt="/" className='lg:h-full md:h-full aspect-auto flex' />
                     </div>
