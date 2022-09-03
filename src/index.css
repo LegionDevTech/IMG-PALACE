@@ -10,7 +10,7 @@
 
 @layer base {
     body{
-        @apply font-[Raleway]
+        @apply font-[Raleway];
     }
     li {
         @apply p-4;
