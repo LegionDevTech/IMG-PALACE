@@ -40,7 +40,7 @@ const Grid = (props) => {
                     });
             }
         }
-    }, [location, loadMorePageCount]);
+    }, [location, loadMorePageCount, gridData]);
 
 
 
