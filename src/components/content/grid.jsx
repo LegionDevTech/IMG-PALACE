@@ -99,7 +99,7 @@ const Grid = (props) => {
                     }
                 </div>
             </div>
-            <div className="md:masonry-3-col lg:masonry-3-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
+            <div className="md:masonry-3-col lg:masonry-3-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5">
                 {
                     location.pathname === "/images"
                     &&

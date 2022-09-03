@@ -38,7 +38,7 @@ const ImageCard = (props) => {
                 </>
                 :
                 props.gridData.map((tileData, index, obj) => (
-                    <div key={index} className="break-inside rounded-md shadow-lg hover:scale-105 duration-200  ">
+                    <div key={index} className="break-inside shadow-lg hover:scale-105 duration-200  ">
                         {/**
                          *  NOTE: Put some loading animation here!!
                          * Also note that imageCard-image-loader-animation
@@ -48,12 +48,12 @@ const ImageCard = (props) => {
 
                         </div> */}
 
-                        <div className="w-full aspect-auto animate-fade-in-down" style={{ height: tileData.newH }}>
-                            <img src={tileData.src} alt="/" className="rounded-md " onLoad={(oEvent) => onImageLoad(oEvent)} />
+                        <div className="animate-fade-in-down rounded-md" style={{ height: tileData.newH }}>
+                            <img src={tileData.src} alt="/" className="w-full aspect-auto rounded-md animate-fade-in-down " onLoad={(oEvent) => onImageLoad(oEvent)} />
                         </div>
-                        <div className="relative px-3 justify-center items-center">
+                        <div className="relative px-3 justify-center items-center animate-fade-in-down ">
                             <button onClick={() => toggleDownload(tileData)} className=" absolute bottom-3 py-1 px-1 rounded-md bg-transparent border-[1.5px] hover:border-none text-white hover:duration-500 hover:text-white hover:bg-transparent" >
-                                <CgSoftwareDownload size={20} className='hover:scale-125 items-center' />
+                                <CgSoftwareDownload size={22} className='hover:scale-125 items-center' /> 
                             </button>
                         </div>
                     </div>
