@@ -1,6 +1,6 @@
 {
   "name": "img-palace",
-  "homepage" : "",
+  "homepage" : "https://imgpalace.legiondev.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
