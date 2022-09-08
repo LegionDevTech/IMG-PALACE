@@ -15,7 +15,7 @@ const Content = (props) => {
 
         <Routes>
             <Route path="/" index={true} element={<Grid />} />
-            <Route path="/images" element={<Grid />} />
+            <Route path="images" element={<Grid />} />
             <Route path="/videos" element={<Grid />} />
             <Route path="/aboutimg" element={<Aboutimg />} />
             <Route path="/modal" element={<Modal />} />

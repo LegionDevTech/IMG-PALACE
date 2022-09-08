@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useLocation, useNavigate } from "react-router-dom";
 import Typed from 'react-typed';
+import iplogowithoutbg from '../../assets/images/iplogowithoutbg.webp';
 
 // custom imports
 import v1 from '../../assets/videos/v1.mp4';
@@ -32,7 +33,9 @@ const Background = () => {
             />
             <div className='absolute w-full h-full top-0 left-0 bg-gray-900/30'></div>
             <div className='absolute top-0 w-full h-full flex flex-col justify-center text-center text-white p-4'>
-                <p className='font-bold p-1 text-3xl uppercase md:text-5xl sm:text-4xl md:py-4'>.Img Palace</p>
+                
+                <img src={iplogowithoutbg} alt="/" className="max-h-28 mx-auto " />
+                {/* <p className='font-bold p-1 text-3xl uppercase md:text-5xl sm:text-4xl md:py-4'>.Img Palace </p> */}
                 <h1>Offers you free stock Images</h1>
                 <div className='flex justify-center items-center'>
                     <p className='py-5 md:text-4xl sm:text:3x-l text-xl font-bold '>Get royalty Free </p>
