@@ -56,9 +56,9 @@ const Footer = () => {
       </div>
       {/* back to top */}
       <div className="fixed z-30 bottom-0 right-0 mr-6 mb-6 ">
-        <a onClick={() => ScrollToTop()} className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
+        <button onClick={() => ScrollToTop()} className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
           <BiArrowToTop size={22} className='hover:scale-105 ' />
-        </a>
+        </button>
       </div>
     </div>
   );

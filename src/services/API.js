@@ -1,5 +1,3 @@
-import React from "react";
-
 async function getImages(sPath, sQuery, iPage) {
     const backendResponse = await fetch("/getImages?" + new URLSearchParams({
         sPath: sPath,
@@ -11,7 +9,7 @@ async function getImages(sPath, sQuery, iPage) {
         return jsonResponse.photos;
     }
 }
-
-export default {
+const API = {
     getImages
 };
+export default API;

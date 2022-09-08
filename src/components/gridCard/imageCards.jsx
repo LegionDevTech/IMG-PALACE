@@ -1,7 +1,7 @@
 //react imports
 import React from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 
 // custom imports
 import BusyCards from "./busyCards";
@@ -11,9 +11,9 @@ const ImageCard = (props) => {
 
     const [isDownload, setIsDownload] = React.useState(false);
     const [singleTileData, setSingleTileData] = React.useState();
-    const downloadFile = (sURL, sName) => {
-        saveAs(sURL, sName);
-    };
+    // const downloadFile = (sURL, sName) => {
+    //     saveAs(sURL, sName);
+    // };
 
     const toggleDownload = (imageData) => {
         setSingleTileData(imageData);
