@@ -86,7 +86,7 @@ const Header = (props) => {
               </a>
             </li>
             <li>
-              <a href="http://localhost:3000/images" className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3 ">
+              <a href="/images" className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3 ">
                 <IoMdImages size={18} className='mr-2' />
                 Images
               </a>
@@ -129,7 +129,7 @@ const Header = (props) => {
               <a href="/home">Home</a>
             </li>
             <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
-              <a href="http://localhost:3000/images">Images</a>
+              <a href="/images">Images</a>
             </li>
             <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
               <a href="/videos">Videos</a>
