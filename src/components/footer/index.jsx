@@ -35,7 +35,8 @@ const Footer = () => {
         <div className="flex justify-between ">
           <ul className="lg:flex">
             <a href="aboutimg"><li>About</li></a>
-            <li>Language</li>
+            <a href="privacy"><li>Privacy Policy</li></a>
+            <a href="terms"><li>T &amp; C </li></a>
           </ul>
           <ul className="text-right lg:flex">
             <a href="/">
