@@ -7,7 +7,7 @@ const privacy = () => {
         <div className="flex justify-center items-center py-4 border-x-2 hover:border-pink-500 hover:border-shadow-2xl shadow-xl rounded-md bg-gradient-to-l from-[#0f2527]  to-[#2C5364] text-white">
           <h2> Privacy Policy | .IMG PALACE </h2>
         </div>
-        <div className="flex justify-center items-start w-full h-auto my-4 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] text-white ">
+        <div className="flex justify-center items-start animate-fade-in-down w-full h-auto my-4 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] text-white ">
           <div className="mx-2 my-4 flex gap-5 flex-col text-justify text-gray-200/80">
             <p className="font-sans text-lg">
               At imgpalace, accessible from https://imgpalace.legiondev.net/,

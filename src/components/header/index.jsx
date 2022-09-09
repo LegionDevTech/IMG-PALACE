@@ -46,8 +46,8 @@ const Header = (props) => {
     <>
       <div className={
         location.pathname === "/" ?
-          "flex w-full justify-between items-center p-4 z-10 text-white absolute" :
-          "flex w-full justify-between items-center p-4 z-10 text-white shadow-lg sticky top-0 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] "}>
+          "flex w-full justify-between items-center p-2 z-10 text-white absolute" :
+          "flex w-full justify-between items-center p-2 z-10 text-white shadow-lg sticky top-0 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364] "}>
         <div className="flex justify-between items-center w-full h-full px-2">
           {/* Menu */}
           <div className="flex items-center">
