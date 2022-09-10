@@ -28,15 +28,16 @@ const Grid = (props) => {
         if (navigator.onLine) {
             // check if location pathname is /images
             if (location.pathname === "/images") {
-                var tempGridData = [];
-                if (tempLocationSearch.current === location.search) {
-                    tempGridData = gridData;
-                }
-                tempLocationSearch.current = location.search;
+
                 // get data for images based on pathname, search query and pages
                 API.getImages(location.pathname, location.search, loadMorePageCount)
                     .then(function (value) {
-                        setGridData([...tempGridData, ...value]);
+                        if (tempLocationSearch.current === location.search) {
+                            setGridData(prevGridData => [...prevGridData, ...value]);
+                        } else {
+                            setGridData(value);
+                        }
+                        tempLocationSearch.current = location.search;
                     });
             }
         }
