@@ -24,4 +24,5 @@ const error404 = (props) => {
   )
 }
 
+
 export default error404
