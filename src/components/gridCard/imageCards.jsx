@@ -5,7 +5,8 @@ import { CgSoftwareDownload } from "react-icons/cg";
 
 // custom imports
 import BusyCard from "./busyCard";
-import Modal from "../content/modal";
+// import Modal from "../content/modal";
+import Modal from "../modal";
 
 const ImageCard = (props) => {
 
@@ -69,6 +70,7 @@ const ImageCard = (props) => {
             {
                 isDownload && <Modal tileData={singleTileData} show={isDownload} toggleDownload={toggleDownload} />
             }
+
         </>
     );
 

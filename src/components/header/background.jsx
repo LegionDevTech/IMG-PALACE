@@ -21,6 +21,14 @@ export default function Background() {
         });
     };
 
+    React.useEffect(() => {
+        let params = new URLSearchParams(location.search);
+        let sQuery = params.get("query");
+        sQuery = (sQuery === null || sQuery === undefined) ? "" : sQuery;
+        setSearchInput(sQuery);
+    }, [location]);
+
+
     return (
 
         <div className='w-full h-screen realtive'>
@@ -59,6 +67,7 @@ export default function Background() {
                     <input onInput={e => setSearchInput(e.target.value)}
                         className='bg-transparent w-[300px] sm:w-[600px] focus:outline-none p-2'
                         type="text"
+                        value={searchInput}
                         placeholder='Search Here' />
                     <button onClick={() => onSearchButtonPress(searchInput)}
                         className=' hover:bg-green-600 hover:border-green-600 hover:duration-200  ml-2 '>

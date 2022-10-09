@@ -68,13 +68,19 @@ export default function Menu() {
                 }
             >
                 <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
-                    <a href="/home">Home</a>
+                    <a href="/home">
+                        Home
+                    </a>
                 </li>
                 <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
-                    <a href="/images">Images</a>
+                    <a href="/images">
+                        Images
+                    </a>
                 </li>
                 <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
-                    <a href="/videos">Videos</a>
+                    <a href="/videos">
+                        Videos
+                    </a>
                 </li>
                 {/*
                         <div className="flex flex-col my-6">

@@ -33,9 +33,9 @@ const Grid = (props) => {
                 API.getImages(location.pathname, location.search, loadMorePageCount)
                     .then(function (value) {
                         if (tempLocationSearch.current === location.search) {
-                            // setGridData(prevGridData => [...prevGridData, ...value]);
+                            setGridData(prevGridData => [...prevGridData, ...value]);
                         } else {
-                            // setGridData(value);
+                            setGridData(value);
                         }
                         tempLocationSearch.current = location.search;
                     });
