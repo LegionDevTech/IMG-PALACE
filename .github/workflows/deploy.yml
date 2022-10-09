@@ -33,4 +33,4 @@ jobs:
           KEY: ${{ secrets.SSHKEY }}
         with:
           source: "build/*"
-          target: "/var/www/html"
+          target: "/home/legiondev/public_html/"
