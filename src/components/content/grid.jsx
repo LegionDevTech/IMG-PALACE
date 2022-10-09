@@ -32,7 +32,10 @@ const Grid = (props) => {
                 // get data for images based on pathname, search query and pages
                 API.getImages(location.pathname, location.search, loadMorePageCount)
                     .then(function (value) {
-                        if (tempLocationSearch.current === location.search) {
+                        if (!!!value) {
+                            setGridData([]);
+                        }
+                        else if (tempLocationSearch.current === location.search) {
                             setGridData(prevGridData => [...prevGridData, ...value]);
                         } else {
                             setGridData(value);
