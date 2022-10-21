@@ -1,36 +1,23 @@
+//react imports
 import React from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
 import HoverVideoPlayer from 'react-hover-video-player';
 
-const VideoCard = () => {
+// custom imports
+import BusyCard from "./busyCard";
 
-    const [gridData, setGridData] = React.useState(null);
-
-    React.useEffect(() => {
-        fetch("/getVideos",
-            {
-                method: 'GET',
-                headers: {
-                    Accept: 'application/json',
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    response.json().then(json => {
-                        setGridData(json.aVideoResponse);
-                    });
-                }
-            });
-    }, []);
-
-
+const VideoCard = (props) => {
 
     return (
-        <div className="md:masonry-3-col lg:masonry-4-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-4">
-
-            {!gridData ?
-                "" :
-                gridData.map((tileData, index, obj) => (
+        <>
+            {props.gridData.length === 0 ?
+                <>
+                    <BusyCard />
+                    <BusyCard />
+                    <BusyCard />
+                </>
+                :
+                props.gridData.map((tileData, index, obj) => (
 
                     <div key={index} className=" break-inside rounded-md shadow-lg hover:scale-105 duration-300">
                         {/* <img src={tileData.image} alt="/" className="rounded-md" /> */}
@@ -63,8 +50,7 @@ const VideoCard = () => {
                         </div>
                     </div>
                 ))}
-
-        </div>
+        </>
     );
 
 };

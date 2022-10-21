@@ -2,11 +2,14 @@
 import React from "react";
 import { BsArrowDownShort } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
+import {
+    createClient
+} from 'pexels';
 
 // custom imports
 import ImageCards from "../gridCard/imageCards";
 import VideoCards from "../gridCard/videoCards";
-import API from "../../services/API";
+import { useCallback } from "react";
 
 const Grid = (props) => {
 
@@ -21,6 +24,62 @@ const Grid = (props) => {
         { searchText: "cars", displayText: "Cars" },
         { searchText: "sunset", displayText: "Sunset" }
     ];
+    const loadImages = useCallback(async (sQuery, iPage, perPage) => {
+        const client = createClient('563492ad6f9170000100000156956241344046c8953c628fb5e032b7'),
+            fixedWidth = 300;
+        var value;
+        if (sQuery === "") {
+            await client.photos.curated({
+                page: iPage,
+                per_page: perPage
+            }).then(photos => {
+                var localPhotos = photos,
+                    oSingleImage;
+                for (var i = 0; i < localPhotos.photos.length; i++) {
+                    oSingleImage = localPhotos.photos[i]
+                    localPhotos.photos[i].src = oSingleImage.src.tiny.split("?")[0] + "?auto=compress&cs=tinysrgb&dpr=2&w=" + fixedWidth;
+                    localPhotos.photos[i]["newH"] = oSingleImage.height / oSingleImage.width * fixedWidth;
+                }
+                value = localPhotos.photos;
+                if (!!!value) {
+                    setGridData([]);
+                }
+                else if (tempLocationSearch.current === location.search) {
+                    setGridData(prevGridData => [...prevGridData, ...value]);
+                } else {
+                    setGridData(value);
+                }
+                tempLocationSearch.current = location.search;
+            });
+        } else {
+            await client.photos.search({
+                query: sQuery,
+                page: iPage,
+                per_page: perPage
+            })
+                .then(photos => {
+                    var localPhotos = photos,
+                        oSingleImage;
+                    for (var i = 0; i < localPhotos.photos.length; i++) {
+                        oSingleImage = localPhotos.photos[i];
+                        localPhotos.photos[i].src = localPhotos.photos[i].src.tiny.split("?")[0] + "?auto=compress&cs=tinysrgb&dpr=2&w=" + fixedWidth;
+                        localPhotos.photos[i]["newH"] = oSingleImage.height / oSingleImage.width * fixedWidth;
+                    }
+                    value = localPhotos.photos;
+                    if (!!!value) {
+                        setGridData([]);
+                    }
+                    else if (tempLocationSearch.current === location.search) {
+                        setGridData(prevGridData => [...prevGridData, ...value]);
+                    } else {
+                        setGridData(value);
+                    }
+                    tempLocationSearch.current = location.search;
+                });
+        }
+    }, [location.search])
+
+    const loadVideos = async (sQuery, iPage, perPage) => { };
 
 
     React.useEffect(() => {
@@ -28,23 +87,14 @@ const Grid = (props) => {
         if (navigator.onLine) {
             // check if location pathname is /images
             if (location.pathname === "/images") {
-
                 // get data for images based on pathname, search query and pages
-                API.getImages(location.pathname, location.search, loadMorePageCount)
-                    .then(function (value) {
-                        if (!!!value) {
-                            setGridData([]);
-                        }
-                        else if (tempLocationSearch.current === location.search) {
-                            setGridData(prevGridData => [...prevGridData, ...value]);
-                        } else {
-                            setGridData(value);
-                        }
-                        tempLocationSearch.current = location.search;
-                    });
+                loadImages(location.search, loadMorePageCount, 20);
+            } else if (location.pathname === "/videos") {
+                // get data for videos based on pathname, search query and pages
+                loadVideos(location.search, loadMorePageCount, 20);
             }
         }
-    }, [location, loadMorePageCount]);
+    }, [location, loadMorePageCount, loadImages]);
 
 
 
@@ -112,7 +162,7 @@ const Grid = (props) => {
                 {
                     location.pathname === "/videos"
                     &&
-                    <VideoCards />
+                    <VideoCards gridData={gridData} />
                 }
             </div>
             {/* Pagination Button  */}
