@@ -32,5 +32,5 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
         with:
-          source: "build/*"
-          target: "/home/legiondev/public_html/"
+          source: "build/"
+          target: ${{ secrets.TARGETDIR }}
