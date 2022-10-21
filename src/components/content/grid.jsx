@@ -9,7 +9,7 @@ import {
 // custom imports
 import ImageCards from "../gridCard/imageCards";
 import VideoCards from "../gridCard/videoCards";
-import API from "../../services/API";
+import { useCallback } from "react";
 
 const Grid = (props) => {
 
@@ -24,7 +24,7 @@ const Grid = (props) => {
         { searchText: "cars", displayText: "Cars" },
         { searchText: "sunset", displayText: "Sunset" }
     ];
-    const loadImages = async (sQuery, iPage, perPage) => {
+    const loadImages = useCallback(async (sQuery, iPage, perPage) => {
         const client = createClient('563492ad6f9170000100000156956241344046c8953c628fb5e032b7'),
             fixedWidth = 300;
         var value;
@@ -34,7 +34,6 @@ const Grid = (props) => {
                 per_page: perPage
             }).then(photos => {
                 var localPhotos = photos,
-                    aImageResponse = [],
                     oSingleImage;
                 for (var i = 0; i < localPhotos.photos.length; i++) {
                     oSingleImage = localPhotos.photos[i]
@@ -78,7 +77,7 @@ const Grid = (props) => {
                     tempLocationSearch.current = location.search;
                 });
         }
-    };
+    }, [location.search])
 
     const loadVideos = async (sQuery, iPage, perPage) => { };
 
@@ -95,7 +94,7 @@ const Grid = (props) => {
                 loadVideos(location.search, loadMorePageCount, 20);
             }
         }
-    }, [location, loadMorePageCount]);
+    }, [location, loadMorePageCount, loadImages]);
 
 
 
