@@ -8,7 +8,7 @@ import BusyCard from "./busyCard";
 // import Modal from "../content/modal";
 import Modal from "../modal";
 
-const ImageCard = (props) => {
+export default function ImageCard(props) {
 
     const [isDownload, setIsDownload] = React.useState(false);
     const [singleTileData, setSingleTileData] = React.useState();
@@ -76,4 +76,3 @@ const ImageCard = (props) => {
 
 };
 
-export default ImageCard;
