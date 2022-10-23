@@ -2,14 +2,13 @@
 import React from "react";
 import { BsArrowDownShort } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-    createClient
-} from 'pexels';
+import { useCallback } from "react";
 
 // custom imports
 import ImageCards from "../gridCard/imageCards";
 import VideoCards from "../gridCard/videoCards";
-import { useCallback } from "react";
+import { APIPexelsPhotos } from "../../services/API/Pexels";
+import GridUtility from "../../utilities/components/grid";
 
 const Grid = (props) => {
 
@@ -17,99 +16,44 @@ const Grid = (props) => {
     const navigate = useNavigate();
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
     const [gridData, setGridData] = React.useState([]);
-    var tempLocationSearch = React.useRef(location.search);
-    const searchTagNames = [
-        { searchText: "nature", displayText: "Nature" },
-        { searchText: "abstract", displayText: "Abstract" },
-        { searchText: "cars", displayText: "Cars" },
-        { searchText: "sunset", displayText: "Sunset" }
-    ];
-    const loadImages = useCallback(async (sQuery, iPage, perPage) => {
-        const client = createClient('563492ad6f9170000100000156956241344046c8953c628fb5e032b7'),
-            fixedWidth = 300;
-        var value;
-        if (sQuery === "") {
-            await client.photos.curated({
-                page: iPage,
-                per_page: perPage
-            }).then(photos => {
-                var localPhotos = photos,
-                    oSingleImage;
-                for (var i = 0; i < localPhotos.photos.length; i++) {
-                    oSingleImage = localPhotos.photos[i]
-                    localPhotos.photos[i].src = oSingleImage.src.tiny.split("?")[0] + "?auto=compress&cs=tinysrgb&dpr=2&w=" + fixedWidth;
-                    localPhotos.photos[i]["newH"] = oSingleImage.height / oSingleImage.width * fixedWidth;
-                }
-                value = localPhotos.photos;
-                if (!!!value) {
-                    setGridData([]);
-                }
-                else if (tempLocationSearch.current === location.search) {
-                    setGridData(prevGridData => [...prevGridData, ...value]);
-                } else {
-                    setGridData(value);
-                }
-                tempLocationSearch.current = location.search;
-            });
-        } else {
-            await client.photos.search({
-                query: sQuery,
-                page: iPage,
-                per_page: perPage
-            })
-                .then(photos => {
-                    var localPhotos = photos,
-                        oSingleImage;
-                    for (var i = 0; i < localPhotos.photos.length; i++) {
-                        oSingleImage = localPhotos.photos[i];
-                        localPhotos.photos[i].src = localPhotos.photos[i].src.tiny.split("?")[0] + "?auto=compress&cs=tinysrgb&dpr=2&w=" + fixedWidth;
-                        localPhotos.photos[i]["newH"] = oSingleImage.height / oSingleImage.width * fixedWidth;
-                    }
-                    value = localPhotos.photos;
-                    if (!!!value) {
-                        setGridData([]);
-                    }
-                    else if (tempLocationSearch.current === location.search) {
-                        setGridData(prevGridData => [...prevGridData, ...value]);
-                    } else {
-                        setGridData(value);
-                    }
-                    tempLocationSearch.current = location.search;
-                });
-        }
-    }, [location.search])
 
-    const loadVideos = async (sQuery, iPage, perPage) => { };
+
+    /**
+     * This function is used to call Services API call to get *IMAGES*.
+     * On reponse the data it set to grid!
+     */
+    const loadImages = useCallback((sSearchQuery, iPageNumber, iContentPerPage) => {
+        var responsePromise = APIPexelsPhotos(sSearchQuery, iPageNumber, iContentPerPage);
+        responsePromise.then(response => {
+            setGridData(prevGridData => [...prevGridData, ...response.photos]);
+        });
+    }, []);
+
+    /**
+    * This function is used to call Services API call to get *VIDEOS*.
+    * On reponse the data it set to grid!
+    */
+    const loadVideos = useCallback((sSearchQuery, iPageNumber, iContentPerPage) => {
+        var responsePromise = APIPexelsPhotos(sSearchQuery, iPageNumber, iContentPerPage);
+        responsePromise.then(response => {
+            setGridData(prevGridData => [...prevGridData, ...response.photos]);
+        });
+    }, []);
 
 
     React.useEffect(() => {
         // check if browser is online
         if (navigator.onLine) {
-            // check if location pathname is /images
+            // check location pathname and then
+            // get data for images or videos based on pathname, search query
             if (location.pathname === "/images") {
-                // get data for images based on pathname, search query and pages
-                loadImages(location.search, loadMorePageCount, 20);
+                loadImages(location.search, loadMorePageCount);
             } else if (location.pathname === "/videos") {
-                // get data for videos based on pathname, search query and pages
-                loadVideos(location.search, loadMorePageCount, 20);
+                loadVideos(location.search, loadMorePageCount);
             }
         }
-    }, [location, loadMorePageCount, loadImages]);
-
-
-
-    const getTitle = () => {
-        switch (location.pathname) {
-            case "/":
-                return "Home";
-            case "/images":
-                return "Images";
-            case "/videos":
-                return "Videos";
-            default:
-                return "Title Not found";
-        }
-    };
+        // TODO: else show error
+    }, [location, loadMorePageCount, loadImages, loadVideos]);
 
     const onSearchTagClick = (sQuery) => {
         setLoadMorePageCount(1);
@@ -123,30 +67,37 @@ const Grid = (props) => {
     return (
         <div className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
             <div className=" bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
-                <h2 className="py-2 items-center font-bold">{getTitle()}</h2>
+                <h2 className="py-2 items-center font-bold">
+                    {GridUtility.getTitle(location.pathname)}
+                </h2>
             </div>
+
             {/* filter row */}
             <div className="max-w-none m-auto px-2 py-3">
                 <div className="relative justify-between focus:shadow-lg ">
                     {//display Recent button for images
                         location.pathname === "/images"
                         &&
-                        <button onClick={() => onSearchTagClick("recent")} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] ">
+                        <button onClick={() => onSearchTagClick("recent")}
+                            className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] ">
                             Recent
                         </button>
                     }
                     {//display Popular for videos
                         location.pathname === "/videos"
                         &&
-                        <button onClick={() => onSearchTagClick("popular")} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] ">
+                        <button onClick={() => onSearchTagClick("popular")}
+                            className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364] ">
                             Popular
                         </button>
                     }
 
                     {/* display common search tags */}
                     {
-                        searchTagNames.map((val, index, obj) => (
-                            <button key={index} onClick={() => onSearchTagClick(val.searchText)} className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
+                        GridUtility.getSearchTagNames().map((val, index, obj) => (
+                            <button key={index}
+                                onClick={() => onSearchTagClick(val.searchText)}
+                                className="rounded-full m-1 border-gray-500 text-white bg-transparent font-medium leading-tight focus:outline-none focus:ring-0 duration-150 inline-block focus:bg-[#14272c] items-center px-4 py-1 text-sm hover:bg-gradient-to-r from-[#203a43] to-[#2c5364]">
                                 {val.displayText}
                             </button>
                         ))
@@ -166,10 +117,12 @@ const Grid = (props) => {
                 }
             </div>
             {/* Pagination Button  */}
-            <div className="flex justify-center items-center my-5 p-4  ">
+            <div className="flex justify-center items-center my-5 p-4">
                 {/* text */}
-                <button onClick={() => setLoadMorePageCount(loadMorePageCount + 1)} className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">For More
-                    <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125 ' />
+                <button onClick={() => setLoadMorePageCount(loadMorePageCount + 1)}
+                    className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">
+                    For More
+                    <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125' />
                 </button>
             </div>
         </div >
