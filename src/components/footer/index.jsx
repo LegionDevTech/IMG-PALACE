@@ -25,40 +25,65 @@ const Footer = () => {
 
           {/* footer icons  */}
           <div className="flex justify-center items-center gap-x-20  sm:max-w-[240px] my-4">
-            <FaFacebook size={28} className="icon hover:text-blue-600 duration-300" />
-            <FaInstagram size={28} className="icon hover:text-pink-500" />
-            <FaPinterest size={28} className="icon hover:text-red-700" />
+            <FaFacebook size={28}
+              className="icon hover:text-blue-600 duration-300" />
+            <FaInstagram size={28}
+              className="icon hover:text-pink-500" />
+            <FaPinterest size={28}
+              className="icon hover:text-red-700" />
           </div>
         </div>
 
         {/* Footer Menu  */}
         <div className="flex justify-between ">
           <ul className="lg:flex">
-            <a href="aboutimg"><li>About</li></a>
-            <a href="privacy"><li>Privacy Policy</li></a>
-            <a href="terms"><li>T &amp; C </li></a>
+            <a href="about">
+              <li>
+                About
+              </li>
+            </a>
+            <a href="privacyPolicy">
+              <li>
+                Privacy Policy
+              </li>
+            </a>
+            <a href="termAndConditions">
+              <li>
+                T &amp; C
+              </li>
+            </a>
           </ul>
           <ul className="text-right lg:flex">
             <a href="/">
-              <li className="hover:text-blue-400">Home</li>
+              <li className="hover:text-blue-400">
+                Home
+              </li>
             </a>
 
             <a href="images">
-              <li className="hover:text-blue-400">Images</li>
+              <li className="hover:text-blue-400">
+                Images
+              </li>
             </a>
             <a href="videos">
-              <li className="hover:text-blue-400">Videos</li>
+              <li className="hover:text-blue-400">
+                Videos
+              </li>
             </a>
           </ul>
         </div>
         <div className="text-center">
-          <h4>© Copyright 2022</h4>
+          <h4>
+            © Copyright 2022
+          </h4>
         </div>
       </div>
       {/* back to top */}
       <div className="fixed z-30 bottom-0 right-0 mr-6 mb-6 ">
-        <button onClick={() => ScrollToTop()} className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
-          <BiArrowToTop size={22} className='hover:scale-105 ' />
+        <button onClick={() => ScrollToTop()}
+          className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
+          <BiArrowToTop size={22}
+            className='hover:scale-105 ' />
         </button>
       </div>
     </div>

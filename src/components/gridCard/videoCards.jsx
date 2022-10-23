@@ -10,13 +10,11 @@ const VideoCard = (props) => {
 
     return (
         <>
-            {props.gridData.length === 0 ?
-                <>
-                    <BusyCard />
-                    <BusyCard />
-                    <BusyCard />
-                </>
-                :
+            <BusyCard />
+            <BusyCard />
+            <BusyCard />
+            {1 === 0 &&
+
                 props.gridData.map((tileData, index, obj) => (
 
                     <div key={index} className=" break-inside rounded-md shadow-lg hover:scale-105 duration-300">
@@ -43,9 +41,9 @@ const VideoCard = (props) => {
                                 {tileData.alt}
                             </p> */}
 
-                            <button2 className="absolute bottom-3 py-1 px-1 rounded-md bg-transparent border-[1.5px] hover:border-none text-white hover:duration-500 hover:text-white hover:bg-transparent">
+                            <button className="absolute bottom-3 py-1 px-1 rounded-md bg-transparent border-[1.5px] hover:border-none text-white hover:duration-500 hover:text-white hover:bg-transparent">
                                 <a href="downloads"><CgSoftwareDownload size={20} className='hover:scale-125 items-center hover:animate-bounce' /></a>
-                            </button2>
+                            </button>
 
                         </div>
                     </div>

@@ -1,3 +1,7 @@
+/**
+ * FILE NOT USED
+ */
+
 import React from 'react'
 import { BsGoogle } from 'react-icons/bs'
 import { BsFacebook } from 'react-icons/bs'
