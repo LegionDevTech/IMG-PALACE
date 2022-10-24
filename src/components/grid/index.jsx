@@ -2,7 +2,6 @@
 import React from "react";
 import { BsArrowDownShort } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCallback } from "react";
 
 // custom imports
 import ImageCards from "../gridCard/imageCards";
@@ -29,16 +28,18 @@ export default function Grid(props) {
     const navigate = useNavigate();
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
     const [gridData, setGridData] = React.useState([]);
+    const [showPaginationButton, setShowPaginationButton] = React.useState(true);
 
 
     /**
      * This function is used to call Services API call to get *IMAGES*.
      * On reponse the data it set to grid!
      */
-    const loadImages = useCallback((sSearchQuery, iPageNumber) => {
+    const loadImages = React.useCallback((sSearchQuery, iPageNumber) => {
         var responsePromise = APIPexelsPhotos(sSearchQuery, iPageNumber);
         responsePromise.then(response => {
             setGridData(prevGridData => [...prevGridData, ...response.photos]);
+            setShowPaginationButton(response.next_page ? true : false);
         });
     }, []);
 
@@ -46,10 +47,11 @@ export default function Grid(props) {
     * This function is used to call Services API call to get *VIDEOS*.
     * On reponse the data it set to grid!
     */
-    const loadVideos = useCallback((sSearchQuery, iPageNumber) => {
+    const loadVideos = React.useCallback((sSearchQuery, iPageNumber) => {
         var responsePromise = APIPexelsVideos(sSearchQuery, iPageNumber);
         responsePromise.then(response => {
             setGridData(prevGridData => [...prevGridData, ...response.videos]);
+            setShowPaginationButton(response.next_page ? true : false);
         });
     }, []);
 
@@ -61,7 +63,7 @@ export default function Grid(props) {
             // get data for images or videos based on pathname, search query
             if (props.gridContentType === "Home" || props.gridContentType === "Images") {
                 loadImages(location.search, loadMorePageCount);
-            } else if (props.gridContentType === "Vidoes") {
+            } else if (props.gridContentType === "Videos") {
                 loadVideos(location.search, loadMorePageCount);
             }
         }
@@ -97,7 +99,7 @@ export default function Grid(props) {
             </div>
 
             {/* Pagination Button  */}
-            <div className="flex justify-center items-center my-5 p-4">
+            <div className={showPaginationButton ? "flex justify-center items-center my-5 p-4" : "hidden"} >
                 {/* text */}
                 <button onClick={() => setLoadMorePageCount(loadMorePageCount + 1)}
                     className="font-bold py-2 px-2 items-center justify-between border-none hover:shadow-xl hover:shadow-gray-800/80 bg-transparent text-gray-400 flex">
