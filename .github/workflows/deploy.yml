@@ -30,7 +30,7 @@ jobs:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
-          KEY: ${{ secrets.SSHKEY }}
+          PASSWORD: ${{ secrets.SSHPASSWORD }}
         with:
           source: "build/"
           target: ${{ secrets.TARGETDIR }}
