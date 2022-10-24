@@ -1,15 +1,14 @@
-// const IMAGE_FIXED_WIDTH = 300;
+const IMAGE_FIXED_WIDTH = 300;
 
-// function resizePhotos(photos) {
-//     for (var i = 0; i < photos.length; i++) {
-//         photos[i].src = photos[i].src.tiny.split("?")[0] + "?auto=compress&cs=tinysrgb&dpr=2&w=" + IMAGE_FIXED_WIDTH;
-//         photos[i]["newH"] = photos[i].height / photos[i].width * IMAGE_FIXED_WIDTH;
-//     }
-//     return photos;
-// }
+function resizeThumbnail(videos) {
+    for (var i = 0; i < videos.length; i++) {
+        videos[i].image = videos[i].image.split("?")[0] + "?auto=compress&cs=tinysrgb&dpr=2&w=" + IMAGE_FIXED_WIDTH;
+        videos[i]["newH"] = videos[i].height / videos[i].width * IMAGE_FIXED_WIDTH;
+    }
+    return videos;
+}
 
 export const searchForVideos = async (PEXELS_API_CLIENT_OBJECT, sSearchQuery, iPageNumber, iContentPerPage) => {
-
     return new Promise(resolve => {
         PEXELS_API_CLIENT_OBJECT.videos.search({
                 query: sSearchQuery,
@@ -17,7 +16,7 @@ export const searchForVideos = async (PEXELS_API_CLIENT_OBJECT, sSearchQuery, iP
                 per_page: iContentPerPage
             })
             .then(response => {
-                // response.photos = resizePhotos(response.photos);
+                response.photos = resizeThumbnail(response.videos);
                 resolve(response);
             });
     })
@@ -31,7 +30,7 @@ export const popularVideos = async (PEXELS_API_CLIENT_OBJECT, iPageNumber, iCont
                 per_page: iContentPerPage
             })
             .then(response => {
-                // response.photos = resizePhotos(response.photos);
+                response.photos = resizeThumbnail(response.videos);
                 resolve(response);
             });
     })

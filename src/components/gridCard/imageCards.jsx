@@ -39,7 +39,7 @@ export default function ImageCard(props) {
                 </>
                 :
                 props.gridData.map((tileData, index, obj) => (
-                    <div key={index}
+                    <div key={tileData.id}
                         className="break-inside shadow-lg hover:scale-105 duration-200  ">
                         {/**
                          *  NOTE: Put some loading animation here!!

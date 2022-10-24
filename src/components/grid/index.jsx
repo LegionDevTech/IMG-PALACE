@@ -63,7 +63,7 @@ export default function Grid(props) {
             // get data for images or videos based on pathname, search query
             if (props.gridContentType === "Home" || props.gridContentType === "Images") {
                 loadImages(location.search, loadMorePageCount);
-            } else if (props.gridContentType === "Vidoes") {
+            } else if (props.gridContentType === "Videos") {
                 loadVideos(location.search, loadMorePageCount);
             }
         }
