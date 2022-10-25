@@ -88,13 +88,13 @@ export default function Grid(props) {
 
     return (
         <div ref={gridContainerRef} className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
-            <div className=" bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
+            <div className="flex bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
                 <h2 className="py-2 items-center font-bold">
                     {props.title}
                 </h2>
-                <h2 className="py-2 items-end font-bold">
-                    {location.search.split("query=")[1]}
-                </h2>
+                <p className="w-full text-right p-2 self-center italic justify-between text-gray-600  ">
+                    {"Search results for: " + location.search.split("query=")[1]}
+                </p>
             </div>
 
             {/* filter row */}
