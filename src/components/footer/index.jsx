@@ -28,9 +28,9 @@ const Footer = () => {
             <FaFacebook size={28}
               className="icon hover:text-blue-600 duration-300" />
             <FaInstagram size={28}
-              className="icon hover:text-pink-500" />
+              className="icon hover:text-pink-500 duration-300" />
             <FaPinterest size={28}
-              className="icon hover:text-red-700" />
+              className="icon hover:text-red-700 duration-300" />
           </div>
         </div>
 
