@@ -51,8 +51,11 @@ export default function VideoCard(props) {
 
                             <div className="animate-fade-in-down rounded-md"
                                 style={{ height: tileData.newH }}>
-                                <img src={tileData.image}
+                                <video src={tileData.video_files[0].link}
+                                    poster={tileData.image}
                                     alt="/"
+                                    onMouseOver={event => event.target.play()}
+                                    onMouseOut={event => event.target.pause()}
                                     className="w-full aspect-auto rounded-md animate-fade-in-down "
                                     onLoad={(oEvent) => onThumbnailLoad(oEvent)} />
                             </div>
@@ -64,36 +67,6 @@ export default function VideoCard(props) {
                                 </button>
                             </div>
                         </div>
-                        // <div key={tileData.id} className=" break-inside rounded-md shadow-lg hover:scale-105 duration-300">
-                        //     {/* <img src={tileData.image} alt="/" className="rounded-md" /> */}
-                        //     {/* <video  >
-                        //     <source src={tileData.video_files[1].link} type="video/mp4" />
-                        // </video> */}
-                        //     <HoverVideoPlayer className="w-full h-full object-cover bg-slate-600"
-                        //         videoSrc={tileData.video_files[1].link}
-                        //         pausedOverlay={
-                        //             <img
-                        //                 src={tileData.image}
-                        //                 alt={tileData.user.name}
-                        //             />
-                        //         }
-                        //         loadingOverlay={
-                        //             <div className="loading-overlay">
-                        //                 <div className="loading-spinner" />
-                        //             </div>
-                        //         }
-                        //     />
-                        //     <div className="relative px-3 justify-between items-center">
-                        //         {/* <p className="items-center py-2 flex">
-                        //         {tileData.alt}
-                        //     </p> */}
-
-                        //         <button className="absolute bottom-3 py-1 px-1 rounded-md bg-transparent border-[1.5px] hover:border-none text-white hover:duration-500 hover:text-white hover:bg-transparent">
-                        //             <a href="downloads"><CgSoftwareDownload size={20} className='hover:scale-125 items-center hover:animate-bounce' /></a>
-                        //         </button>
-
-                        //     </div>
-                        // </div>
                     ))}
             {
                 isDownload && <Modal tileData={singleTileData} show={isDownload} toggleDownload={toggleDownload} />
