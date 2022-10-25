@@ -4,10 +4,12 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdImages } from "react-icons/io"
 import { MdVideoLibrary } from "react-icons/md"
+import { useLocation } from "react-router-dom";
 
 export default function Menu() {
 
     const [showHamburgerDropDown, setShowHamburgerDropDown] = React.useState(false);
+    const location = useLocation();
 
     return (
         <>
@@ -15,7 +17,12 @@ export default function Menu() {
             <ul className="justify-between items-center hidden md:flex text-sm">
                 <li>
                     <a href="/"
-                        className="flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3">
+                        className={
+                            location.pathname === "/" ?
+                                "flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3"//TODO: ACTIVE CSS
+                                :
+                                "flex hover:bg-gray-700/40  rounded-sm duration-500 -mx-3 p-3"//TODO: IN-ACTIVE CSS
+                        }>
                         <AiFillHome
                             size={18}
                             className="mr-2" />
@@ -24,7 +31,12 @@ export default function Menu() {
                 </li>
                 <li>
                     <a href="/images"
-                        className="flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3 ">
+                        className={
+                            location.pathname === "/images" ?
+                                "flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3"//TODO: ACTIVE CSS
+                                :
+                                "flex hover:bg-gray-700/40  rounded-sm duration-500 -mx-3 p-3"//TODO: IN-ACTIVE CSS
+                        }>
                         <IoMdImages size={18}
                             className='mr-2' />
                         Images
@@ -32,7 +44,12 @@ export default function Menu() {
                 </li>
                 <li>
                     <a href="/videos"
-                        className="flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3 ">
+                        className={
+                            location.pathname === "/videos" ?
+                                "flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3" //TODO: ACTIVE CSS
+                                :
+                                "flex hover:bg-gray-700/40  rounded-sm duration-500 -mx-3 p-3"//TODO: IN-ACTIVE CSS
+                        }>
                         <MdVideoLibrary size={18}
                             className="mr-2" />
                         Videos
@@ -60,24 +77,37 @@ export default function Menu() {
             </div>
 
             {/* Mobile Dropdown */}
-            <ul
-                className={
-                    !showHamburgerDropDown
-                        ? "hidden"
-                        : "absolute top-0 left-0 h-screen flex flex-col justify-center items-center bg-[#0a192f]/90 w-full px-8"
-                }
-            >
-                <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
+            <ul className={
+                !showHamburgerDropDown
+                    ? "hidden"
+                    : "absolute top-0 left-0 h-screen flex flex-col justify-center items-center bg-[#0a192f]/90 w-full px-8"
+            }>
+                <li className={
+                    location.pathname === "/" ?
+                        "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase" //TODO: ACTIVE CSS
+                        :
+                        "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase"//TODO: IN-ACTIVE CSS
+                }>
                     <a href="/">
                         Home
                     </a>
                 </li>
-                <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
+                <li className={
+                    location.pathname === "/images" ?
+                        "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase" //TODO: ACTIVE CSS
+                        :
+                        "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase"//TODO: IN-ACTIVE CSS
+                }>
                     <a href="/images">
                         Images
                     </a>
                 </li>
-                <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
+                <li className={
+                    location.pathname === "/videos" ?
+                        "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase" //TODO: ACTIVE CSS
+                        :
+                        "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase"//TODO: IN-ACTIVE CSS
+                }>
                     <a href="/videos">
                         Videos
                     </a>
