@@ -13,6 +13,8 @@ export default function Background() {
     const [searchInput, setSearchInput] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+    const searchButtonRef = React.useRef(null);
+
     const onSearchButtonPress = (sQuery) => {
         // navigate to pathname with query
         navigate({
@@ -28,6 +30,11 @@ export default function Background() {
         setSearchInput(sQuery);
     }, [location]);
 
+    const onSearchInputKeyDown = (event) => {
+        if (event.key === "Enter") {
+            searchButtonRef.current.click();
+        }
+    }
 
     return (
 
@@ -68,8 +75,9 @@ export default function Background() {
                         className='bg-transparent w-[300px] sm:w-[600px] focus:outline-none p-2'
                         type="text"
                         value={searchInput}
+                        onKeyDown={(event) => onSearchInputKeyDown(event)}
                         placeholder='Search Here' />
-                    <button onClick={() => onSearchButtonPress(searchInput)}
+                    <button ref={searchButtonRef} onClick={() => onSearchButtonPress(searchInput)}
                         className=' hover:bg-green-600 hover:border-green-600 hover:duration-200  ml-2 '>
                         <AiOutlineSearch size={22}
                             className='m-2 hover:rotate-90 hover:duration-500' />

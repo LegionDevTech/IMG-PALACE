@@ -24,10 +24,9 @@ export default function SmallSearchBar() {
         });
     };
 
-    const onSearchInputKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            const smallSearchButtonRef = smallSearchButton.current;
-            smallSearchButtonRef.click();
+    const onSearchInputKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            smallSearchButton.current.click();
         }
     };
     return (
@@ -40,6 +39,7 @@ export default function SmallSearchBar() {
                 placeholder="Search here"
             />
             <button onClick={() => onSearchButtonPress(searchInput)}
+                ref={smallSearchButton}
                 className="justify-between items-center text-gray-300 px-1 py-1 rounded-md cursor-pointer">
                 <AiOutlineSearch
                     size={22}
