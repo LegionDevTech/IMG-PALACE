@@ -86,6 +86,9 @@ export default function Grid(props) {
                 <h2 className="py-2 items-center font-bold">
                     {props.title}
                 </h2>
+                <h2 className="py-2 items-end font-bold">
+                    {location.search.split("query=")[1]}
+                </h2>
             </div>
 
             {/* filter row */}
