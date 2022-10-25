@@ -29,6 +29,7 @@ export default function Grid(props) {
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
     const [gridData, setGridData] = React.useState([]);
     const [showPaginationButton, setShowPaginationButton] = React.useState(true);
+    const gridContainerRef = React.useRef(null)
 
 
     /**
@@ -66,6 +67,11 @@ export default function Grid(props) {
             } else if (props.gridContentType === "Videos") {
                 loadVideos(location.search, loadMorePageCount);
             }
+            if (location.search && props.gridContentType === "Home") {
+                gridContainerRef.current.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
         }
         // TODO: else show error
     }, [location, loadMorePageCount, loadImages, loadVideos, props.gridContentType]);
@@ -81,7 +87,7 @@ export default function Grid(props) {
     };
 
     return (
-        <div className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
+        <div ref={gridContainerRef} className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
             <div className=" bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
                 <h2 className="py-2 items-center font-bold">
                     {props.title}
