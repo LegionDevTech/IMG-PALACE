@@ -92,14 +92,19 @@ export default function Grid(props) {
                 <h2 className="py-2 items-center font-bold">
                     {props.title}
                 </h2>
-                <p className="w-full text-right p-2 self-center  justify-between  ">
-                    <span className="text-gray-600">
-                        Search results for:
-                    </span>
-                    <span className="italic text-green-600 ">
-                        {" " + location.search.split("query=")[1]}
-                    </span>
-                </p>
+                {
+                    location.search.split("query=")[1]
+                    &&
+                    <p className="w-full text-right p-2 self-center  justify-between  ">
+                        <span className="text-gray-600">
+                            Search results for:
+                        </span>
+                        <span className="italic text-green-600 ">
+                            {" " + location.search.split("query=")[1]}
+                        </span>
+                    </p>
+                }
+
             </div>
 
             {/* filter row */}
