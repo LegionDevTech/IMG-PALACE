@@ -15,7 +15,7 @@ export default function Menu() {
             <ul className="justify-between items-center hidden md:flex text-sm">
                 <li>
                     <a href="/"
-                        className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3">
+                        className="flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3">
                         <AiFillHome
                             size={18}
                             className="mr-2" />
@@ -24,7 +24,7 @@ export default function Menu() {
                 </li>
                 <li>
                     <a href="/images"
-                        className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3 ">
+                        className="flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3 ">
                         <IoMdImages size={18}
                             className='mr-2' />
                         Images
@@ -32,7 +32,7 @@ export default function Menu() {
                 </li>
                 <li>
                     <a href="/videos"
-                        className="flex hover:bg-gray-700/40 rounded-sm duration-500 -mx-3 p-3 ">
+                        className="flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3 ">
                         <MdVideoLibrary size={18}
                             className="mr-2" />
                         Videos
@@ -68,7 +68,7 @@ export default function Menu() {
                 }
             >
                 <li className="border-zinc-300 py-5 hover:border-b border-b-gray-500 uppercase">
-                    <a href="/home">
+                    <a href="/">
                         Home
                     </a>
                 </li>
