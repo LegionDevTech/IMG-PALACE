@@ -72,6 +72,12 @@ export default function Grid(props) {
             // TODO: else show error
             return;
         }
+        if (location.search) {
+            gridContainerRef.current.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
         // check location pathname and then
         // get data for images or videos based on pathname, search query
         if (props.gridContentType === "Home" || props.gridContentType === "Images") {
@@ -79,13 +85,6 @@ export default function Grid(props) {
         } else if (props.gridContentType === "Videos") {
             loadVideos(location.search, loadMorePageCount);
         }
-        if (location.search && props.gridContentType === "Home") {
-            gridContainerRef.current.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-
-
     }, [location, loadMorePageCount, loadImages, loadVideos, props.gridContentType]);
 
     const onSearchTagClick = (sQuery) => {
