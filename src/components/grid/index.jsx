@@ -29,7 +29,8 @@ export default function Grid(props) {
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
     const [gridData, setGridData] = React.useState([]);
     const [showPaginationButton, setShowPaginationButton] = React.useState(true);
-    const gridContainerRef = React.useRef(null)
+    const gridContainerRef = React.useRef(null);
+    const oldSearchQuery = "";
 
 
     /**
@@ -39,10 +40,14 @@ export default function Grid(props) {
     const loadImages = React.useCallback((sSearchQuery, iPageNumber) => {
         var responsePromise = APIPexelsPhotos(sSearchQuery, iPageNumber);
         responsePromise.then(response => {
-            setGridData(prevGridData => [...prevGridData, ...response.photos]);
+            if (oldSearchQuery === location.search) {
+                setGridData(prevGridData => [...prevGridData, ...response.photos]);
+            } else {
+                setGridData(response.photos);
+            }
             setShowPaginationButton(response.next_page ? true : false);
         });
-    }, []);
+    }, [location.search]);
 
     /**
     * This function is used to call Services API call to get *VIDEOS*.
@@ -51,29 +56,36 @@ export default function Grid(props) {
     const loadVideos = React.useCallback((sSearchQuery, iPageNumber) => {
         var responsePromise = APIPexelsVideos(sSearchQuery, iPageNumber);
         responsePromise.then(response => {
-            setGridData(prevGridData => [...prevGridData, ...response.videos]);
+            if (oldSearchQuery === location.search) {
+                setGridData(prevGridData => [...prevGridData, ...response.videos]);
+            } else {
+                setGridData(response.videos);
+            }
             setShowPaginationButton(response.next_page ? true : false);
         });
-    }, []);
+    }, [location.search]);
 
 
     React.useEffect(() => {
         // check if browser is online
-        if (navigator.onLine) {
-            // check location pathname and then
-            // get data for images or videos based on pathname, search query
-            if (props.gridContentType === "Home" || props.gridContentType === "Images") {
-                loadImages(location.search, loadMorePageCount);
-            } else if (props.gridContentType === "Videos") {
-                loadVideos(location.search, loadMorePageCount);
-            }
-            if (location.search && props.gridContentType === "Home") {
-                gridContainerRef.current.scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
+        if (!navigator.onLine) {
+            // TODO: else show error
+            return;
         }
-        // TODO: else show error
+        // check location pathname and then
+        // get data for images or videos based on pathname, search query
+        if (props.gridContentType === "Home" || props.gridContentType === "Images") {
+            loadImages(location.search, loadMorePageCount);
+        } else if (props.gridContentType === "Videos") {
+            loadVideos(location.search, loadMorePageCount);
+        }
+        if (location.search && props.gridContentType === "Home") {
+            gridContainerRef.current.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+
     }, [location, loadMorePageCount, loadImages, loadVideos, props.gridContentType]);
 
     const onSearchTagClick = (sQuery) => {
