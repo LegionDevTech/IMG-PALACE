@@ -8,6 +8,7 @@ import ImageCards from "../gridCard/imageCards";
 import VideoCards from "../gridCard/videoCards";
 import { APIPexelsPhotos, APIPexelsVideos } from "../../services/API/Pexels";
 import FilterTags from "./FilterTags";
+import { BiArrowToTop } from "react-icons/bi";
 
 
 const getMasonryContent = (gridContentType, gridData) => {
@@ -31,6 +32,9 @@ export default function Grid(props) {
     const [showPaginationButton, setShowPaginationButton] = React.useState(true);
     const gridContainerRef = React.useRef(null);
     const oldSearchQuery = "";
+    const ScrollToTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    };
 
 
     /**
@@ -137,6 +141,16 @@ export default function Grid(props) {
                     <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125' />
                 </button>
             </div>
+            {/* back to top */}
+            <div className="fixed z-30 bottom-0 right-0 mr-6 mb-6 ">
+                <button onClick={() => ScrollToTop()}
+                    className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
+                    <BiArrowToTop size={22}
+                        className='hover:scale-105 ' />
+                </button>
+            </div>
+
+
         </div >
     );
 };

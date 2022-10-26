@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '../components/grid';
-import Footer from '../components/footer';
+// import Footer from '../components/footer';
 import Header from '../components/header';
 
 
@@ -25,7 +25,7 @@ export default function Main(props) {
             {
                 renderContent(props.location)
             }
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

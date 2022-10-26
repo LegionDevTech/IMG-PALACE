@@ -30,7 +30,7 @@ export default function SmallSearchBar() {
         }
     };
     return (
-        <div className="bg-[#0f2527]  shadow-xl rounded-md flex items-center px-2 w-[200px] sm:w-[400px] lg:w-[500px] ">
+        <div className="bg-[#0f2527]  shadow-xl rounded-md flex items-center px-2 w-[200px] sm:w-[550px] md:w-[300px] lg:w-[350px] xl:w-[500px]">
             <input onKeyDown={(e) => onSearchInputKeyDown(e)}
                 onInput={e => setSearchInput(e.target.value)}
                 value={searchInput}
