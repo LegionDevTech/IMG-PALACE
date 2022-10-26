@@ -10,8 +10,8 @@ export default function Menu() {
 
     const [showHamburgerDropDown, setShowHamburgerDropDown] = React.useState(false);
     const location = useLocation();
-    const activeMenuButtonStyle = "flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3";
-    const inactiveMenuButtonStyle = "flex hover:bg-gray-700/40  rounded-sm duration-500 -mx-3 p-3";
+    const activeMenuButtonStyle = "flex border-b-4 bg-transpernt duration-100 -mx-3 p-3";
+    const inactiveMenuButtonStyle = "flex hover:border-b-4 duration-100 -mx-3 p-3";
 
     const activeHamMenuButtonStyle = "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase";
     const inactiveHamMenuButtonStyle = "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase";
