@@ -10,6 +10,11 @@ export default function Menu() {
 
     const [showHamburgerDropDown, setShowHamburgerDropDown] = React.useState(false);
     const location = useLocation();
+    const activeMenuButtonStyle = "flex border-b-4 bg-transpernt duration-100 -mx-3 p-3";
+    const inactiveMenuButtonStyle = "flex hover:border-b-4 duration-100 -mx-3 p-3";
+
+    const activeHamMenuButtonStyle = "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase";
+    const inactiveHamMenuButtonStyle = "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase";
 
     return (
         <>
@@ -19,9 +24,9 @@ export default function Menu() {
                     <a href="/"
                         className={
                             location.pathname === "/" ?
-                                "flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3"//TODO: ACTIVE CSS
+                                activeMenuButtonStyle
                                 :
-                                "flex hover:bg-gray-700/40  rounded-sm duration-500 -mx-3 p-3"//TODO: IN-ACTIVE CSS
+                                inactiveMenuButtonStyle
                         }>
                         <AiFillHome
                             size={18}
@@ -33,9 +38,9 @@ export default function Menu() {
                     <a href="/images"
                         className={
                             location.pathname === "/images" ?
-                                "flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3"//TODO: ACTIVE CSS
+                                activeMenuButtonStyle
                                 :
-                                "flex hover:bg-gray-700/40  rounded-sm duration-500 -mx-3 p-3"//TODO: IN-ACTIVE CSS
+                                inactiveMenuButtonStyle
                         }>
                         <IoMdImages size={18}
                             className='mr-2' />
@@ -46,9 +51,9 @@ export default function Menu() {
                     <a href="/videos"
                         className={
                             location.pathname === "/videos" ?
-                                "flex hover:bg-gray-700/40 bg-gray-900 rounded-sm duration-500 -mx-3 p-3" //TODO: ACTIVE CSS
+                                activeMenuButtonStyle
                                 :
-                                "flex hover:bg-gray-700/40  rounded-sm duration-500 -mx-3 p-3"//TODO: IN-ACTIVE CSS
+                                inactiveMenuButtonStyle
                         }>
                         <MdVideoLibrary size={18}
                             className="mr-2" />
@@ -84,9 +89,9 @@ export default function Menu() {
             }>
                 <li className={
                     location.pathname === "/" ?
-                        "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase" //TODO: ACTIVE CSS
+                        activeHamMenuButtonStyle
                         :
-                        "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase"//TODO: IN-ACTIVE CSS
+                        inactiveHamMenuButtonStyle
                 }>
                     <a href="/">
                         Home
@@ -94,9 +99,9 @@ export default function Menu() {
                 </li>
                 <li className={
                     location.pathname === "/images" ?
-                        "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase" //TODO: ACTIVE CSS
+                        activeHamMenuButtonStyle
                         :
-                        "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase"//TODO: IN-ACTIVE CSS
+                        inactiveHamMenuButtonStyle
                 }>
                     <a href="/images">
                         Images
@@ -104,9 +109,9 @@ export default function Menu() {
                 </li>
                 <li className={
                     location.pathname === "/videos" ?
-                        "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase" //TODO: ACTIVE CSS
+                        activeHamMenuButtonStyle
                         :
-                        "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase"//TODO: IN-ACTIVE CSS
+                        inactiveHamMenuButtonStyle
                 }>
                     <a href="/videos">
                         Videos

@@ -14,7 +14,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="w-full py-16 shadow-2xl bg-gradient-to-l from-[#0f2527] to-[#2C5364] text-white ">
+    <div className="w-full sticky bottom-0 shadow-2xl bg-gradient-to-l from-[#0f2527] to-[#2C5364] text-white ">
       <div className="max-w-none mx-auto flex flex-col px-4">
         <div className="sm:flex text-center justify-between items-center">
           <a href="/">

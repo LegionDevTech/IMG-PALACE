@@ -8,6 +8,7 @@ import ImageCards from "../gridCard/imageCards";
 import VideoCards from "../gridCard/videoCards";
 import { APIPexelsPhotos, APIPexelsVideos } from "../../services/API/Pexels";
 import FilterTags from "./FilterTags";
+import { BiArrowToTop } from "react-icons/bi";
 
 
 const getMasonryContent = (gridContentType, gridData) => {
@@ -29,7 +30,11 @@ export default function Grid(props) {
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
     const [gridData, setGridData] = React.useState([]);
     const [showPaginationButton, setShowPaginationButton] = React.useState(true);
-    const gridContainerRef = React.useRef(null)
+    const gridContainerRef = React.useRef(null);
+    const oldSearchQuery = "";
+    const ScrollToTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    };
 
 
     /**
@@ -39,10 +44,14 @@ export default function Grid(props) {
     const loadImages = React.useCallback((sSearchQuery, iPageNumber) => {
         var responsePromise = APIPexelsPhotos(sSearchQuery, iPageNumber);
         responsePromise.then(response => {
-            setGridData(prevGridData => [...prevGridData, ...response.photos]);
+            if (oldSearchQuery === location.search) {
+                setGridData(prevGridData => [...prevGridData, ...response.photos]);
+            } else {
+                setGridData(response.photos);
+            }
             setShowPaginationButton(response.next_page ? true : false);
         });
-    }, []);
+    }, [location.search]);
 
     /**
     * This function is used to call Services API call to get *VIDEOS*.
@@ -51,29 +60,35 @@ export default function Grid(props) {
     const loadVideos = React.useCallback((sSearchQuery, iPageNumber) => {
         var responsePromise = APIPexelsVideos(sSearchQuery, iPageNumber);
         responsePromise.then(response => {
-            setGridData(prevGridData => [...prevGridData, ...response.videos]);
+            if (oldSearchQuery === location.search) {
+                setGridData(prevGridData => [...prevGridData, ...response.videos]);
+            } else {
+                setGridData(response.videos);
+            }
             setShowPaginationButton(response.next_page ? true : false);
         });
-    }, []);
+    }, [location.search]);
 
 
     React.useEffect(() => {
         // check if browser is online
-        if (navigator.onLine) {
-            // check location pathname and then
-            // get data for images or videos based on pathname, search query
-            if (props.gridContentType === "Home" || props.gridContentType === "Images") {
-                loadImages(location.search, loadMorePageCount);
-            } else if (props.gridContentType === "Videos") {
-                loadVideos(location.search, loadMorePageCount);
-            }
-            if (location.search && props.gridContentType === "Home") {
-                gridContainerRef.current.scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
+        if (!navigator.onLine) {
+            // TODO: else show error
+            return;
         }
-        // TODO: else show error
+        if (location.search) {
+            gridContainerRef.current.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+        // check location pathname and then
+        // get data for images or videos based on pathname, search query
+        if (props.gridContentType === "Home" || props.gridContentType === "Images") {
+            loadImages(location.search, loadMorePageCount);
+        } else if (props.gridContentType === "Videos") {
+            loadVideos(location.search, loadMorePageCount);
+        }
     }, [location, loadMorePageCount, loadImages, loadVideos, props.gridContentType]);
 
     const onSearchTagClick = (sQuery) => {
@@ -126,6 +141,16 @@ export default function Grid(props) {
                     <BsArrowDownShort size={24} className='text-gray-400 animate-bounce hover:scale-125' />
                 </button>
             </div>
+            {/* back to top */}
+            <div className="fixed z-30 bottom-0 right-0 mr-6 mb-6 ">
+                <button onClick={() => ScrollToTop()}
+                    className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
+                    <BiArrowToTop size={22}
+                        className='hover:scale-105 ' />
+                </button>
+            </div>
+
+
         </div >
     );
 };
