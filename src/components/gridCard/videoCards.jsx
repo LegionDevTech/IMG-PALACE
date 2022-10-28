@@ -56,7 +56,7 @@ export default function VideoCard(props) {
 
                         </div> */}
 
-                            <div className="animate-fade-in-down rounded-md aspect-auto" >
+                            <div className="animate-fade-in-down rounded-md aspect-auto cursor-pointer" >
                                 {/* style={{ height: tileData.newH }}>   */}
                                 <video src={tileData.video_files[0].link}
                                     poster={tileData.image}
