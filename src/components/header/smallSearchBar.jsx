@@ -20,7 +20,7 @@ export default function SmallSearchBar() {
         // navigate to pathname with query
         navigate({
             pathname: location.pathname,
-            search: "query=" + sQuery
+            search: sQuery ? "query=" + sQuery : ""
         });
     };
 
