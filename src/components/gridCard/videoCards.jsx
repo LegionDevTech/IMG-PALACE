@@ -27,6 +27,13 @@ export default function VideoCard(props) {
         // oParent.parentElement.getElementsByClassName("imageCard-image-loader-animation")[0].style.display = "none"
     };
 
+    const onVideoMouseOver = (event, videoURL) => {
+        if (!event.target.src) {
+            event.target.src = videoURL;
+        }
+        event.target.play();
+    };
+
     return (
         <>
             {
@@ -51,10 +58,13 @@ export default function VideoCard(props) {
 
                             <div className="animate-fade-in-down rounded-md"
                                 style={{ height: tileData.newH }}>
-                                <video src={tileData.video_files[0].link}
+                                <video preload="false"
+                                    loop
+                                    playsInline
+                                    muted
                                     poster={tileData.image}
                                     alt="/"
-                                    onMouseOver={event => event.target.play()}
+                                    onMouseOver={event => onVideoMouseOver(event, tileData.video_files[0].link)}
                                     onMouseOut={event => event.target.pause()}
                                     className="w-full aspect-auto rounded-md animate-fade-in-down "
                                     onLoad={(oEvent) => onThumbnailLoad(oEvent)} />
