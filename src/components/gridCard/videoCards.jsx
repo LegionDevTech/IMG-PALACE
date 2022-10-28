@@ -56,12 +56,9 @@ export default function VideoCard(props) {
 
                         </div> */}
 
-                            <div className="animate-fade-in-down rounded-md"
-                                style={{ height: tileData.newH }}>
-                                <video preload="false"
-                                    loop
-                                    playsInline
-                                    muted
+                            <div className="animate-fade-in-down rounded-md aspect-auto" >
+                                {/* style={{ height: tileData.newH }}>   */}
+                                <video src={tileData.video_files[0].link}
                                     poster={tileData.image}
                                     alt="/"
                                     onMouseOver={event => onVideoMouseOver(event, tileData.video_files[0].link)}
