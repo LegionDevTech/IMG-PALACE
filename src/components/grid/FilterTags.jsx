@@ -3,7 +3,7 @@ import GridUtility from "../../utilities/components/grid";
 
 export default function filterTags(props) {
     return (
-        <div className="max-w-none m-auto px-2 py-3">
+        <div className="max-w-none m-auto px-2 py-6">
             <div className="relative justify-between focus:shadow-lg ">
                 {//display Recent button for images
                     props.pathname === "/images"

@@ -11,7 +11,7 @@ export default function Menu() {
     const [showHamburgerDropDown, setShowHamburgerDropDown] = React.useState(false);
     const location = useLocation();
     const activeMenuButtonStyle = "flex border-b-4 bg-transpernt duration-100 -mx-3 p-3";
-    const inactiveMenuButtonStyle = "flex hover:border-b-4 duration-100 -mx-3 p-3";
+    const inactiveMenuButtonStyle = "flex hover:border-b-4 hover:border-b-green-500 duration-100 group -mx-3 p-3";
 
     const activeHamMenuButtonStyle = "border-zinc-300 py-5 hover:border-b border-b border-b-gray-500 uppercase";
     const inactiveHamMenuButtonStyle = "border-zinc-300 py-5 hover:border-b border-b-gray-800 uppercase";
@@ -30,7 +30,7 @@ export default function Menu() {
                         }>
                         <AiFillHome
                             size={18}
-                            className="mr-2" />
+                            className="mr-2 group-hover:fill-green-500 " />
                         Home
                     </a>
                 </li>
@@ -43,7 +43,7 @@ export default function Menu() {
                                 inactiveMenuButtonStyle
                         }>
                         <IoMdImages size={18}
-                            className='mr-2' />
+                            className='mr-2 group-hover:fill-green-500' />
                         Images
                     </a>
                 </li>
@@ -56,7 +56,7 @@ export default function Menu() {
                                 inactiveMenuButtonStyle
                         }>
                         <MdVideoLibrary size={18}
-                            className="mr-2" />
+                            className="mr-2 group-hover:fill-green-500" />
                         Videos
                     </a>
                 </li>
