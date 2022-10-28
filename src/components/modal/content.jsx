@@ -24,19 +24,18 @@ export default function Content(props) {
                                 className='mr-1 hover:fill-teal-300 hover:animate-bounce hover:duration-700' />
                             Download
                         </button>
-
                         <button onClick={() => setIsArrowDown(!isArrowDown)}
                             className='inline-flex px-2 py-2.5 my-4 text-xs font-medium leading-4 uppercase rounded-r font-sans  bg-teal-800/90 hover:text-teal-200  border-none hover:shadow-lg  '>
                             <AiOutlineCaretDown size={16}
                                 className={isArrowDown ? "-rotate-90 duration-500" : "duration-500"}
                                 aria-hidden={isArrowDown ? "true" : "false"} />
                         </button>
+
+                        <Download
+                            showOptions={isArrowDown} />
                     </div>
                 </div>
             </div>
-
-            <Download
-                showOptions={isArrowDown} />
         </>
     )
 }
