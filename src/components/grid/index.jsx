@@ -34,7 +34,6 @@ export default function Grid(props) {
             } else {
                 setGridData(response.photos);
             }
-            debugger;
             setShowPaginationButton(response.next_page ? true : false);
         });
     }, [location.search]);
@@ -107,65 +106,65 @@ export default function Grid(props) {
     };
 
     return (
-        <>
-            <div ref={gridContainerRef} className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
-                <div className="flex bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
-                    <h2 className="py-2 items-center font-bold">
-                        {props.title}
-                    </h2>
+        <div ref={gridContainerRef} className="max-w-none mx-auto py-20 px-8 bg-gradient-to-l from-[#0f2527] via-[#203A43] to-[#2C5364]">
+
+            {/* Title and Search results text  */}
+            <div className="flex bg-gradient-to-l from-[#0f2527]  to-[#2C5364] pl-4 shadow-xl border-x-2  rounded-md text-white">
+                <h2 className="py-2 items-center font-bold">
+                    {props.title}
+                </h2>
+                {
+                    location.search.split("query=")[1]
+                    &&
+                    <p className="w-full text-right p-2 self-center  justify-between  ">
+                        <span className="text-gray-600">
+                            Search results for:
+                        </span>
+                        <span className="italic text-green-600 ">
+                            {" " + location.search.split("query=")[1]}
+                        </span>
+                    </p>
+                }
+
+            </div>
+
+            {/* filter row */}
+            <FilterTags pathname={location.pathname}
+                onSearchTagClick={onSearchTagClick} />
+
+            <InfiniteScroll
+                dataLength={gridData.length}
+                next={onNextInfiniteScroll}
+                hasMore={showPaginationButton}
+                loader={
+                    <>
+                        <BusyCard />
+                        <BusyCard />
+                        <BusyCard />
+                    </>
+                }
+                endMessage={
+                    <p style={{ textAlign: 'center' }}>
+                        <b>Yay! You have seen it all</b>
+                    </p>
+                }>
+                <div className="grid gap-2 grid-cols-3 row-span-2 box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5">
                     {
-                        location.search.split("query=")[1]
-                        &&
-                        <p className="w-full text-right p-2 self-center  justify-between  ">
-                            <span className="text-gray-600">
-                                Search results for:
-                            </span>
-                            <span className="italic text-green-600 ">
-                                {" " + location.search.split("query=")[1]}
-                            </span>
-                        </p>
+                        gridData.map((tileData, index, obj) => (
+                            getMasonryCard(tileData)
+                        ))
                     }
-
                 </div>
+            </InfiniteScroll>
 
-                {/* filter row */}
-                <FilterTags pathname={location.pathname}
-                    onSearchTagClick={onSearchTagClick} />
-
-                <InfiniteScroll
-                    dataLength={gridData.length}
-                    next={onNextInfiniteScroll}
-                    hasMore={showPaginationButton}
-                    loader={
-                        <>
-                            <BusyCard />
-                            <BusyCard />
-                            <BusyCard />
-                        </>
-                    }
-                    endMessage={
-                        <p style={{ textAlign: 'center' }}>
-                            <b>Yay! You have seen it all</b>
-                        </p>
-                    }>
-                    <div className="grid gap-2 grid-cols-3 row-span-2 box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5">
-                        {
-                            gridData.map((tileData, index, obj) => (
-                                getMasonryCard(tileData)
-                            ))
-                        }
-                    </div>
-                </InfiniteScroll>
-
-                {/* back to top */}
-                <div className="fixed z-30 bottom-0 right-0 mr-6 mb-6 ">
-                    <button onClick={() => ScrollToTop()}
-                        className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
-                        <BiArrowToTop size={22}
-                            className='hover:scale-105 ' />
-                    </button>
-                </div>
-            </div >
-        </>
+            {/* back to top */}
+            <div className="fixed z-30 bottom-0 right-0 mr-6 mb-6 ">
+                <button onClick={() => ScrollToTop()}
+                    className="text-gray-300 items-center block shadow-md bg-gray-600/80 py-2 px-2 rounded-md hover:text-white ">
+                    <BiArrowToTop size={22}
+                        className='hover:scale-105 ' />
+                </button>
+            </div>
+        </div >
     );
 };
