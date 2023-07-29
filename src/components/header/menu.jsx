@@ -3,7 +3,6 @@ import React from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdImages } from "react-icons/io"
-import { MdVideoLibrary } from "react-icons/md"
 import { useLocation } from "react-router-dom";
 
 export default function Menu() {
@@ -45,19 +44,6 @@ export default function Menu() {
                         <IoMdImages size={18}
                             className='mr-2 ' />
                         Images
-                    </a>
-                </li>
-                <li>
-                    <a href="/videos"
-                        className={
-                            location.pathname === "/videos" ?
-                                activeMenuButtonStyle
-                                :
-                                inactiveMenuButtonStyle
-                        }>
-                        <MdVideoLibrary size={18}
-                            className="mr-2 " />
-                        Videos
                     </a>
                 </li>
             </ul>
@@ -105,16 +91,6 @@ export default function Menu() {
                 }>
                     <a href="/images">
                         Images
-                    </a>
-                </li>
-                <li className={
-                    location.pathname === "/videos" ?
-                        activeHamMenuButtonStyle
-                        :
-                        inactiveHamMenuButtonStyle
-                }>
-                    <a href="/videos">
-                        Videos
                     </a>
                 </li>
                 {/*
