@@ -2,12 +2,16 @@
 import React from "react";
 import { BsArrowDownShort } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Masonry } from '@mui/lab';
 
 // custom imports
 import ImageCards from "../gridCard/imageCards";
 import { APIPexelsPhotos } from "../../services/API/Pexels";
 import FilterTags from "./FilterTags";
 import { BiArrowToTop } from "react-icons/bi";
+import { CgSoftwareDownload } from "react-icons/cg";
+
+
 
 
 const getMasonryContent = (gridContentType, gridData) => {
@@ -20,8 +24,12 @@ const getMasonryContent = (gridContentType, gridData) => {
     }
 }
 
+
+
 export default function Grid(props) {
 
+    const [isDownload, setIsDownload] = React.useState(false);
+    const [singleTileData, setSingleTileData] = React.useState();
     const location = useLocation();
     const navigate = useNavigate();
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
@@ -32,6 +40,21 @@ export default function Grid(props) {
     const ScrollToTop = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     };
+
+
+
+    const toggleDownload = (imageData) => {
+        setSingleTileData(imageData);
+        setIsDownload(!isDownload);
+    };
+
+    const onImageLoad = (oEvent) => {
+        let oParent = oEvent.target.parentElement;
+        oParent.style.height = "auto";
+        // TODO: uncomment after implementing image loader
+        // oParent.parentElement.getElementsByClassName("imageCard-image-loader-animation")[0].style.display = "none"
+    };
+
 
 
     /**
@@ -105,11 +128,36 @@ export default function Grid(props) {
             <FilterTags pathname={location.pathname}
                 onSearchTagClick={onSearchTagClick} />
 
-            <div className="md:masonry-3-col lg:masonry-3-col box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5">
-                {
-                    getMasonryContent(props.gridContentType, gridData)
-                }
-            </div>
+            <Masonry columns={4} spacing={2}>
+                {gridData.map((tileData, index, obj) => (
+                    <div key={tileData.id}
+                        className="break-inside shadow-lg hover:scale-105 duration-200  ">
+                        {/**
+     *  NOTE: Put some loading animation here!!
+     * Also note that imageCard-image-loader-animation
+     * className is for JS neither use in anyother div
+     * nor delete it!!!! */}
+                        {/* <div className="imageCard-image-loader-animation">
+
+    </div> */}
+
+                        <div className="animate-fade-in-down rounded-md"
+                            style={{ height: tileData.newH }}>
+                            <img src={tileData.src}
+                                alt="/"
+                                className="w-full aspect-auto rounded-md animate-fade-in-down "
+                                onLoad={(oEvent) => onImageLoad(oEvent)} />
+                        </div>
+                        <div className="relative px-3 justify-center items-center animate-fade-in-down ">
+                            <button onClick={() => toggleDownload(tileData)}
+                                className=" absolute bottom-3 py-1 px-1 rounded-md bg-transparent border-[1.5px] hover:border-none text-white hover:duration-500 hover:text-white hover:bg-transparent" >
+                                <CgSoftwareDownload size={22}
+                                    className='hover:scale-125 items-center' />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </Masonry>
 
             {/* Pagination Button  */}
             <div className={showPaginationButton ? "flex justify-center items-center my-5 p-4" : "hidden"} >
