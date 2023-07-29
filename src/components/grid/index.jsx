@@ -5,8 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 // custom imports
 import ImageCards from "../gridCard/imageCards";
-import VideoCards from "../gridCard/videoCards";
-import { APIPexelsPhotos, APIPexelsVideos } from "../../services/API/Pexels";
+import { APIPexelsPhotos } from "../../services/API/Pexels";
 import FilterTags from "./FilterTags";
 import { BiArrowToTop } from "react-icons/bi";
 
@@ -16,8 +15,6 @@ const getMasonryContent = (gridContentType, gridData) => {
         case "Home":
         case "Images":
             return <ImageCards gridData={gridData} />;
-        case "Videos":
-            return <VideoCards gridData={gridData} />;
         default:
             break;
     }
@@ -53,22 +50,6 @@ export default function Grid(props) {
         });
     }, [location.search]);
 
-    /**
-    * This function is used to call Services API call to get *VIDEOS*.
-    * On reponse the data it set to grid!
-    */
-    const loadVideos = React.useCallback((sSearchQuery, iPageNumber) => {
-        var responsePromise = APIPexelsVideos(sSearchQuery, iPageNumber);
-        responsePromise.then(response => {
-            if (oldSearchQuery === location.search) {
-                setGridData(prevGridData => [...prevGridData, ...response.videos]);
-            } else {
-                setGridData(response.videos);
-            }
-            setShowPaginationButton(response.next_page ? true : false);
-        });
-    }, [location.search]);
-
 
     React.useEffect(() => {
         // check if browser is online
@@ -83,13 +64,11 @@ export default function Grid(props) {
         }
 
         // check location pathname and then
-        // get data for images or videos based on pathname, search query
+        // get data for images based on pathname, search query
         if (props.gridContentType === "Home" || props.gridContentType === "Images") {
             loadImages(location.search, loadMorePageCount);
-        } else if (props.gridContentType === "Videos") {
-            loadVideos(location.search, loadMorePageCount);
         }
-    }, [location, loadMorePageCount, loadImages, loadVideos, props.gridContentType]);
+    }, [location, loadMorePageCount, loadImages, props.gridContentType]);
 
     const onSearchTagClick = (sQuery) => {
         setGridData([]);

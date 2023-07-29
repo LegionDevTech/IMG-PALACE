@@ -65,11 +65,6 @@ const Footer = () => {
                 Images
               </li>
             </a>
-            <a href="videos">
-              <li className="hover:text-blue-400">
-                Videos
-              </li>
-            </a>
           </ul>
         </div>
         <div className="text-center">

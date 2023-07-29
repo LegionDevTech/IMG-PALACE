@@ -13,7 +13,6 @@ function App() {
     <Routes>
       <Route path="/" index={true} element={<Main location="homePage" />} />
       <Route path="/images" element={<Main location="imagesPage" />} />
-      <Route path="/videos" element={<Main location="videosPage" />} />
       <Route path="/termAndConditions" element={<TermsAndConditions />} />
       <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
       <Route path="/about" element={<About />} />
