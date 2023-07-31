@@ -1,18 +1,34 @@
 // react imports
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { Masonry } from '@mui/lab';
 
 // custom imports
-import { APIPexelsPhotos, APIPexelsVideos } from "../../services/API/Pexels";
+import ImageCards from "../gridCard/imageCards";
+import { APIPexelsPhotos } from "../../services/API/Pexels";
 import FilterTags from "./FilterTags";
 import { BiArrowToTop } from "react-icons/bi";
-import ImageCard from "../gridCard/imageCard";
-import VideoCard from "../gridCard/videoCard";
-import BusyCard from "../gridCard/busyCard";
+import { CgSoftwareDownload } from "react-icons/cg";
+
+
+
+
+const getMasonryContent = (gridContentType, gridData) => {
+    switch (gridContentType) {
+        case "Home":
+        case "Images":
+            return <ImageCards gridData={gridData} />;
+        default:
+            break;
+    }
+}
+
+
 
 export default function Grid(props) {
 
+    const [isDownload, setIsDownload] = React.useState(false);
+    const [singleTileData, setSingleTileData] = React.useState();
     const location = useLocation();
     const navigate = useNavigate();
     const [loadMorePageCount, setLoadMorePageCount] = React.useState(1);
@@ -20,6 +36,24 @@ export default function Grid(props) {
     const [showPaginationButton, setShowPaginationButton] = React.useState(true);
     const gridContainerRef = React.useRef(null);
     const oldSearchQuery = "";
+    const ScrollToTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    };
+
+
+
+    const toggleDownload = (imageData) => {
+        setSingleTileData(imageData);
+        setIsDownload(!isDownload);
+    };
+
+    const onImageLoad = (oEvent) => {
+        let oParent = oEvent.target.parentElement;
+        oParent.style.height = "auto";
+        // TODO: uncomment after implementing image loader
+        // oParent.parentElement.getElementsByClassName("imageCard-image-loader-animation")[0].style.display = "none"
+    };
+
 
 
     /**
@@ -33,22 +67,6 @@ export default function Grid(props) {
                 setGridData(prevGridData => [...prevGridData, ...response.photos]);
             } else {
                 setGridData(response.photos);
-            }
-            setShowPaginationButton(response.next_page ? true : false);
-        });
-    }, [location.search]);
-
-    /**
-    * This function is used to call Services API call to get *VIDEOS*.
-    * On reponse the data it set to grid!
-    */
-    const loadVideos = React.useCallback((sSearchQuery, iPageNumber) => {
-        var responsePromise = APIPexelsVideos(sSearchQuery, iPageNumber);
-        responsePromise.then(response => {
-            if (oldSearchQuery === location.search) {
-                setGridData(prevGridData => [...prevGridData, ...response.videos]);
-            } else {
-                setGridData(response.videos);
             }
             setShowPaginationButton(response.next_page ? true : false);
         });
@@ -68,13 +86,11 @@ export default function Grid(props) {
         }
 
         // check location pathname and then
-        // get data for images or videos based on pathname, search query
+        // get data for images based on pathname, search query
         if (props.gridContentType === "Home" || props.gridContentType === "Images") {
             loadImages(location.search, loadMorePageCount);
-        } else if (props.gridContentType === "Videos") {
-            loadVideos(location.search, loadMorePageCount);
         }
-    }, [location, loadMorePageCount, loadImages, loadVideos, props.gridContentType]);
+    }, [location, loadMorePageCount, loadImages, props.gridContentType]);
 
     const onSearchTagClick = (sQuery) => {
         setGridData([]);
@@ -132,30 +148,36 @@ export default function Grid(props) {
             <FilterTags pathname={location.pathname}
                 onSearchTagClick={onSearchTagClick} />
 
-            <InfiniteScroll
-                dataLength={gridData.length}
-                next={onNextInfiniteScroll}
-                hasMore={showPaginationButton}
-                loader={
-                    <>
-                        <BusyCard />
-                        <BusyCard />
-                        <BusyCard />
-                    </>
-                }
-                endMessage={
-                    <p style={{ textAlign: 'center' }}>
-                        <b>Yay! You have seen it all</b>
-                    </p>
-                }>
-                <div className="grid gap-2 grid-cols-3 row-span-2 box-border mx-auto before:box-inherit after:box-inherit items-center pt-4 space-y-5">
-                    {
-                        gridData.map((tileData, index, obj) => (
-                            getMasonryCard(tileData)
-                        ))
-                    }
-                </div>
-            </InfiniteScroll>
+            <Masonry columns={4} spacing={2}>
+                {gridData.map((tileData, index, obj) => (
+                    <div key={tileData.id}
+                        className="break-inside shadow-lg hover:scale-105 duration-200  ">
+                        {/**
+     *  NOTE: Put some loading animation here!!
+     * Also note that imageCard-image-loader-animation
+     * className is for JS neither use in anyother div
+     * nor delete it!!!! */}
+                        {/* <div className="imageCard-image-loader-animation">
+
+    </div> */}
+
+                        <div className="animate-fade-in-down rounded-md"
+                            style={{ height: tileData.newH }}>
+                            <img src={tileData.src}
+                                alt="/"
+                                className="w-full aspect-auto rounded-md animate-fade-in-down "
+                                onLoad={(oEvent) => onImageLoad(oEvent)} />
+                        </div>
+                        <div className="relative px-3 justify-center items-center animate-fade-in-down ">
+                            <button onClick={() => toggleDownload(tileData)}
+                                className=" absolute bottom-3 py-1 px-1 rounded-md bg-transparent border-[1.5px] hover:border-none text-white hover:duration-500 hover:text-white hover:bg-transparent" >
+                                <CgSoftwareDownload size={22}
+                                    className='hover:scale-125 items-center' />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </Masonry>
 
             {/* back to top */}
             <div className="fixed z-30 bottom-0 right-0 mr-6 mb-6 ">
