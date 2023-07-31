@@ -6,7 +6,7 @@ import Content from "./content";
 export default function Modal(props) {
 
     return (
-        <div className='fixed -inset-4 z-50 bg-gray-500/80 backdrop-blur-sm overflow-auto box-border pt-8 pb-8'>
+        <div className='fixed inset-0 items-center justify-center z-50 bg-gray-500/80 backdrop-blur-sm overflow-auto box-border pt-8 pb-8'>
 
             {/* close btn  */}
             <button onClick={props.toggleDownload}

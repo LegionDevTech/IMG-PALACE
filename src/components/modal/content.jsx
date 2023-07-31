@@ -19,13 +19,15 @@ export default function Content(props) {
                     </div>
                     {/* download and resolution buttons  will have to create onclick listener  */}
                     <div className='flex md:justify-start lg:justify-start justify-center gap-1 items-center w-full px-4 my-8 py-8 duration:700'>
-                        <button className='flex items-center justify-center px-4 py-2 text-xs font-medium leading-4 uppercase font-sans rounded-l bg-teal-800/90 hover:text-teal-400  border-none  hover:shadow-lg  '>
+                        <button className='flex items-center justify-center px-4 py-2 text-xs font-medium leading-4 uppercase font-sans rounded-l bg-teal-800/90 hover:text-teal-200  border-none  hover:shadow-lg  '>
                             <MdDownload size={20}
-                                className='mr-1 hover:fill-teal-300 hover:animate-bounce hover:duration-700' />
+                                className='mr-1 hover:fill-teal-100 ' />
                             Download
                         </button>
                         <button onClick={() => setIsArrowDown(!isArrowDown)}
-                            className='inline-flex px-2 py-2.5 my-4 text-xs font-medium leading-4 uppercase rounded-r font-sans  bg-teal-800/90 hover:text-teal-200  border-none hover:shadow-lg  '>
+                            className='inline-flex relative right-0 px-2.5 py-2.5 my-2 text-xs font-medium leading-2 uppercase rounded-r font-sans  bg-teal-800/90 hover:text-teal-200  border-none hover:shadow-lg  '
+
+                            >
                             <AiOutlineCaretDown size={16}
                                 className={isArrowDown ? "-rotate-90 duration-500" : "duration-500"}
                                 aria-hidden={isArrowDown ? "true" : "false"} />

@@ -2,10 +2,9 @@
 import React from "react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { AiFillHome } from "react-icons/ai";
-import { IoMdImages } from "react-icons/io"
+import { IoMdImages, IoMdMore } from "react-icons/io"
 import { MdVideoLibrary } from "react-icons/md"
 import { useLocation } from "react-router-dom";
-
 export default function Menu() {
 
     const [showHamburgerDropDown, setShowHamburgerDropDown] = React.useState(false);
@@ -60,8 +59,31 @@ export default function Menu() {
                         Videos
                     </a>
                 </li>
-            </ul>
+            <li className="reletive group px-3 py-2">
+                <button className="hover:opacity-50">
+                        <IoMdMore size={25} className="mr-3 " />
+                        <div className="absolute top-0 right-10 group-hover:translate-y-6 translate-y-0 opacity-0 invisible 
+                        group-hover:opacity-100 group-hover:visible duration-500 ease-in-out 
+                        group-hover:transform z-50 min-w-[180px] transform ">
+                            <div className="relative top-14 p-6 text-black bg-white rounded-md shadow-sm w-full">
+                                <div className="w-6 h-6 bg-white transform rotate-45 absolute top-0 z-0 translate-x-0 
+                                transition-transfrom group-hover:translate-x-[8rem] duration-500 ease-in-out rounded-sm">
 
+                                </div>
+                                <div className="relative z-10">
+                                    <div>
+
+                                    </div>
+                                </div>
+                                
+
+                        </div>
+                     </div>   
+                </button>
+                    
+                </li>     
+
+            </ul>
 
             {/* 
                 Button
